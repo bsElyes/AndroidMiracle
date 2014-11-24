@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Miracle</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_one_video">One_video</string>
+    <string name="title_activity_acceuil">AcceuilActivity</string>
+    <string name="title_section1">Produit 1</string>
+    <string name="title_section2">Produit 2</string>
+    <string name="title_section3">Produit 3</string>
+    <string name="title_activity_catalogues">Catalogues des Produits</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_search">Search</string>
+    <string name="action_search_video">Video</string>
+    <string name="action_my_card">Ma Carte Miracle</string>
+    <string name="action_videos">Conseils Beauté</string>
+    <string name="action_shopping">Shopping Beauté</string>
+    <string name="action_magasins">Nos Magasins</string>
+    <string name="title_activity_videos">Videos</string>
+    <string name="title_activity_magasins">Magasins</string>
+    <string name="title_activity_my_card">MyCard</string>
+    <string name="title_activity_products">List des Produits</string>
+    <string name="title_activity_catalogue">Catalogue</string>
+    <string name="action_example">Example action</string>
+    <string name="title_activity_produit">Produit</string>
+
+</resources>
