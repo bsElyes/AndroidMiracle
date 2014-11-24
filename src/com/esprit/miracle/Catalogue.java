@@ -1,7 +1,6 @@
 package com.esprit.miracle;
 
 
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
@@ -14,16 +13,9 @@ import android.view.MenuItem;
 public class Catalogue extends Activity implements
 		NavigationDrawerFragment.NavigationDrawerCallbacks {
 
-	/**
-	 * Fragment managing the behaviors, interactions and presentation of the
-	 * navigation drawer.
-	 */
+	
 	private NavigationDrawerFragment mNavigationDrawerFragment;
 
-	/**
-	 * Used to store the last screen title. For use in
-	 * {@link #restoreActionBar()}.
-	 */
 	private CharSequence mTitle;
 
 	@Override
@@ -38,6 +30,7 @@ public class Catalogue extends Activity implements
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
 				(DrawerLayout) findViewById(R.id.drawer_layout));
+		
 	}
 
 	@Override
@@ -47,17 +40,20 @@ public class Catalogue extends Activity implements
 	    FragmentManager fragmentManager = getFragmentManager();
 	    switch(position) {
 	        case 0:
-	            fragment = new Products();
+	            fragment = new Products(1);
 	            break;
 	        case 1:
-	            fragment =new Products();
+	        	fragment = new Products(2);
+	            break;
+	        case 2:
+	        	fragment = new Products(3);
 	            break;
 	    }
 	    fragmentManager.beginTransaction()
 	        .replace(R.id.container, fragment)
 	        .commit();
-	}
-
+		}
+	
 	public void onSectionAttached(int number) {
 		switch (number) {
 		case 1:
@@ -82,9 +78,7 @@ public class Catalogue extends Activity implements
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		if (!mNavigationDrawerFragment.isDrawerOpen()) {
-			// Only show items in the action bar relevant to this screen
-			// if the drawer is not showing. Otherwise, let the drawer
-			// decide what to show in the action bar.
+			
 			getMenuInflater().inflate(R.menu.catalogue, menu);
 			restoreActionBar();
 			return true;
@@ -94,15 +88,14 @@ public class Catalogue extends Activity implements
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
+		
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
 
 	
 

@@ -25,6 +25,7 @@ public class ProduitAdapter extends ArrayAdapter<Produit>{
 	Context context;
 	List<Produit>produits=new ArrayList<Produit>();
 	
+
 	public ProduitAdapter(Context context, int layoutResourceId
 			, List<Produit> produits) {
 		super(context, layoutResourceId, produits);
@@ -60,6 +61,7 @@ public class ProduitAdapter extends ArrayAdapter<Produit>{
 		imageLoader.DisplayImage(p.getImagePath(), holder.produitImg);
 		holder.produitLibelle.setText(p.getLibelle());
 		holder.produitPrix.setText(p.getPrix()+" DT");
+		
 		return row;
 	}
 

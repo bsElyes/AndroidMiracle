@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import android.app.Fragment;
 import android.app.ProgressDialog;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,49 +26,58 @@ import com.esprit.utils.HelperHttp;
 public class Products extends Fragment {
 	ListView listProduitsList;
 	GridView listProduitsGrid;
-	List<Produit> produits= new ArrayList<Produit>();
+	List<Produit> produits=new ArrayList<Produit>();;
 	ProduitAdapter produitAdapter;
-	String url="http://192.168.1.2:80/scripts/produits.php?id=1";
-	String categorie="1";
+	String url="http://192.168.1.2:80/scripts/produits.php?id=";
+
 	
-	
-	public Products() {
-		// TODO Auto-generated constructor stub
+
+	public Products(int i) {
+		url+=""+i;
 	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View v = inflater.inflate(R.layout.fragment_produits, container , false);
 		
-		listProduitsList=(ListView ) getActivity().findViewById(R.id.lv_produitsList);
-		listProduitsGrid=(GridView) getActivity().findViewById(R.id.lv_produitsGrid);
+		listProduitsList=(ListView ) v.findViewById(R.id.lv_produitsList);
+		listProduitsGrid=(GridView)v.findViewById(R.id.lv_produitsGrid);
 		
-		Log.d("Hello","i'm Here Before Asyc");
+//		for(int i =0 ; i <5 ; i++){
+//		Produit p=new Produit();
+//		p.setLibelle(",najnnkkj : "+i);
+//		p.setPrix(550);
+//		p.setImagePath("5544554 : "+i);
+//		produits.add(p);
+//	}
 		new AsycGetProducts().execute();
-		Log.d("Hello","i'm Here After Asyc");
 		
 		return v;
 	}
 	
-	
 	@Override
 	public void onStart() {
-		// TODO Auto-generated method stub
-		for(int i =0 ; i <5 ; i++){
-			Produit p=new Produit();
-			p.setLibelle(",najnnkkj : "+i);
-			p.setPrix(550);
-			p.setImagePath("5544554 : "+i);
-			produits.add(p);
-		}
-		produitAdapter=new ProduitAdapter(getActivity(), R.layout.produit_detail_row, produits);
-		listProduitsList.setVisibility(View.VISIBLE);
-		listProduitsList.setAdapter(produitAdapter);
-		//listProduitsGrid.setAdapter(produitAdapter);
-		onConfigurationChanged(getResources().getConfiguration());
 		
+		
+		onConfigurationChanged(getResources().getConfiguration());
 		super.onStart();
+	}
+	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+
+		if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+			listProduitsList.setVisibility(View.VISIBLE);
+			listProduitsGrid.setVisibility(View.GONE);
+		}
+
+		else if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+			listProduitsList.setVisibility(View.GONE);
+			listProduitsGrid.setVisibility(View.VISIBLE);
+		}
 	}
 	
 	
@@ -92,6 +102,7 @@ public class Products extends Fragment {
 			// TODO Auto-generated catch block
 			Log.d("JSON ",e.getMessage());
 		}
+		Log.d("parseJsonProduit ","Done");
 	}
 	
 	class AsycGetProducts extends AsyncTask<String, Void, String>{
@@ -103,7 +114,9 @@ public class Products extends Fragment {
 			barProgressDialog.setTitle("Loading...");
 			barProgressDialog.setMessage("Please Wait...");
 			barProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+			
 			barProgressDialog.show();
+			Log.d("onPreExecute ","Done");
 			super.onPreExecute();
 		}
 
@@ -111,26 +124,21 @@ public class Products extends Fragment {
 		protected String doInBackground(String... params) {
 			// TODO Auto-generated method stub
 			
-//			String jsonProduit=HelperHttp.getJSONResponseFromURL(url);
-//			System.out.println("fffff"+jsonProduit);
-//			parseJsonProduit(produits, jsonProduit);
+			String jsonProduit=HelperHttp.getJSONResponseFromURL(url);
+			parseJsonProduit(produits, jsonProduit);
 			
+			Log.d("doInBackGroud ","Done");
 			return null;
 		}
 		
 		@Override
 		protected void onPostExecute(String result) {
-			// TODO Auto-generated method stub
-			
 			produitAdapter=new ProduitAdapter(getActivity(), R.layout.produit_detail_row, produits);
-			
-			listProduitsList.setAdapter(produitAdapter);
-			//listProduitsGrid.setAdapter(produitAdapter);
 			listProduitsList.setVisibility(View.VISIBLE);
+			listProduitsList.setAdapter(produitAdapter);
+			listProduitsGrid.setAdapter(produitAdapter);
 			barProgressDialog.dismiss();
-			
-
-
+			Log.d("onPostExecute ","Done");
 			super.onPostExecute(result);
 		}
 		
