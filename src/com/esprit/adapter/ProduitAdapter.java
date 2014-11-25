@@ -3,20 +3,19 @@ package com.esprit.adapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.esprit.entities.Produit;
-import com.esprit.miracle.Products;
-import com.esprit.miracle.R;
-import com.esprit.utils.ImageLoader;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.esprit.entities.Produit;
+import com.esprit.miracle.Products;
+import com.esprit.miracle.R;
+import com.esprit.utils.ImageLoader;
 
 
 public class ProduitAdapter extends ArrayAdapter<Produit>{
@@ -36,6 +35,8 @@ public class ProduitAdapter extends ArrayAdapter<Produit>{
 		this.context = context;
 		this.produits = produits;
 		imageLoader = new ImageLoader(context.getApplicationContext());
+		
+		
 	}
 
 	

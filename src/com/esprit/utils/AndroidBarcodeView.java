@@ -1,40 +1,13 @@
 package com.esprit.utils;
 
 
+import com.onbarcode.barcode.android.*;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.view.View;
-
-import com.onbarcode.barcode.android.AndroidColor;
-import com.onbarcode.barcode.android.AndroidFont;
-import com.onbarcode.barcode.android.Codabar;
-import com.onbarcode.barcode.android.Code11;
-import com.onbarcode.barcode.android.Code128;
-import com.onbarcode.barcode.android.Code25;
-import com.onbarcode.barcode.android.Code39;
-import com.onbarcode.barcode.android.Code93;
-import com.onbarcode.barcode.android.DataMatrix;
-import com.onbarcode.barcode.android.EAN128;
-import com.onbarcode.barcode.android.EAN13;
-import com.onbarcode.barcode.android.EAN8;
-import com.onbarcode.barcode.android.IBarcode;
-import com.onbarcode.barcode.android.ISBN;
-import com.onbarcode.barcode.android.ISSN;
-import com.onbarcode.barcode.android.ITF14;
-import com.onbarcode.barcode.android.Identcode;
-import com.onbarcode.barcode.android.Interleaved25;
-import com.onbarcode.barcode.android.Leitcode;
-import com.onbarcode.barcode.android.MSI;
-import com.onbarcode.barcode.android.Onecode;
-import com.onbarcode.barcode.android.PDF417;
-import com.onbarcode.barcode.android.Planet;
-import com.onbarcode.barcode.android.Postnet;
-import com.onbarcode.barcode.android.QRCode;
-import com.onbarcode.barcode.android.RM4SCC;
-import com.onbarcode.barcode.android.UPCA;
-import com.onbarcode.barcode.android.UPCE;
 
 public class AndroidBarcodeView extends View
 {
@@ -1419,4 +1392,3 @@ public class AndroidBarcodeView extends View
     }
 
 }
-

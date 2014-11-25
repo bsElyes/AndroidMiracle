@@ -1,5 +1,7 @@
 package com.esprit.miracle;
 
+import com.esprit.utils.AndroidBarcodeView;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,7 +12,8 @@ public class MyCard extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_my_card);
+		AndroidBarcodeView view = new AndroidBarcodeView(this);
+		setContentView(view);
 	}
 
 	@Override

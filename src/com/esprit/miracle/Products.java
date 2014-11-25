@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import android.app.Fragment;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.ListView;
 
@@ -23,15 +26,16 @@ import com.esprit.adapter.ProduitAdapter;
 import com.esprit.entities.Produit;
 import com.esprit.utils.HelperHttp;
 
+
 public class Products extends Fragment {
 	ListView listProduitsList;
 	GridView listProduitsGrid;
-	List<Produit> produits=new ArrayList<Produit>();;
+	List<Produit> produits=new ArrayList<Produit>();
 	ProduitAdapter produitAdapter;
-	public static String  ipServer="http://192.168.1.2:80";
+	public static String  ipServer="http://172.16.203.142:80";
 	String urlCat="/scripts/produits.php?id=";
 
-	
+	boolean done=false;
 	public Products(){
 		urlCat=ipServer+urlCat+""+1;
 		
@@ -55,14 +59,33 @@ public class Products extends Fragment {
 //		}
 		
 		listProduitsList=(ListView ) v.findViewById(R.id.lv_produitsList);
-		listProduitsGrid=(GridView)v.findViewById(R.id.lv_produitsGrid);	
+		listProduitsGrid=(GridView)v.findViewById(R.id.lv_produitsGrid);
+		listProduitsList.setOnItemClickListener(new OnItemClickListener(
+				) {
+
+					@Override
+					public void onItemClick(AdapterView<?> arg0, View arg1,
+							int arg2, long arg3) {
+						Intent intent=new Intent(getActivity(),ProductDetails.class);
+						intent.putExtra("URLImage",produits.get(arg2).getImagePath());
+						intent.putExtra("LibelleProduit",produits.get(arg2).getLibelle());
+						intent.putExtra("Prix",produits.get(arg2).getPrix());
+						getActivity().startActivity(intent);
+						getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+						
+					}
+		});
 		return v;
 	}
 	
 	@Override
 	public void onStart() {
+		
 		onConfigurationChanged(getResources().getConfiguration());
-		new AsycGetProducts().execute();
+		if (!done) {
+			new AsycGetProducts().execute();
+		}
+		
 		super.onStart();
 	}
 	
@@ -125,7 +148,7 @@ public class Products extends Fragment {
 		@Override
 		protected String doInBackground(String... params) {
 			// TODO Auto-generated method stub
-			
+			done=true;
 			String jsonProduit=HelperHttp.getJSONResponseFromURL(urlCat);
 			parseJsonProduit(produits, jsonProduit);
 			

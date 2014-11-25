@@ -58,7 +58,7 @@ public class MainActivity extends Activity {
 	}
 	
 	public void mycard(View view) {
-		Intent intent = new Intent(MainActivity.this , MyCardFragment.class);
+		Intent intent = new Intent(MainActivity.this , MyCard.class);
 		startActivity(intent);
 		overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 

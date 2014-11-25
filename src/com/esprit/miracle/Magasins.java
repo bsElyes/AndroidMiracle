@@ -26,7 +26,7 @@ public class Magasins extends Activity {
 	public GMapV2Direction md;
 	public GPSTracker mGPS ;
 	LatLng fromPosition =null;
-	LatLng toPosition = new LatLng(36.8339127,10.1789832);
+	LatLng toPosition = new LatLng(36.8498327,10.2203717);
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
