@@ -28,12 +28,16 @@ public class Products extends Fragment {
 	GridView listProduitsGrid;
 	List<Produit> produits=new ArrayList<Produit>();;
 	ProduitAdapter produitAdapter;
-	String url="http://192.168.1.2:80/scripts/produits.php?id=";
+	public static String  ipServer="http://172.16.203.142:80";
+	String urlCat="/scripts/produits.php?id=";
 
 	
-
+	public Products(){
+		urlCat=ipServer+urlCat+""+1;
+		
+	}
 	public Products(int i) {
-		url+=""+i;
+		urlCat=ipServer+urlCat+""+i;
 	}
 
 	@Override
@@ -41,29 +45,29 @@ public class Products extends Fragment {
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View v = inflater.inflate(R.layout.fragment_produits, container , false);
+
+//		for(int i =0 ; i <5 ; i++){
+//			Produit p=new Produit();
+//			p.setLibelle(",najnnkkj : "+i);
+//			p.setPrix(550);
+//			p.setImagePath("5544554 : "+i);
+//			produits.add(p);
+//		}
 		
 		listProduitsList=(ListView ) v.findViewById(R.id.lv_produitsList);
 		listProduitsGrid=(GridView)v.findViewById(R.id.lv_produitsGrid);
 		
-//		for(int i =0 ; i <5 ; i++){
-//		Produit p=new Produit();
-//		p.setLibelle(",najnnkkj : "+i);
-//		p.setPrix(550);
-//		p.setImagePath("5544554 : "+i);
-//		produits.add(p);
-//	}
+
+		
+		produitAdapter=new ProduitAdapter(getActivity(), R.layout.produit_detail_row, produits);
+		onConfigurationChanged(getResources().getConfiguration());
+		
 		new AsycGetProducts().execute();
 		
 		return v;
 	}
 	
-	@Override
-	public void onStart() {
-		
-		
-		onConfigurationChanged(getResources().getConfiguration());
-		super.onStart();
-	}
+	
 	
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
@@ -71,11 +75,13 @@ public class Products extends Fragment {
 
 		if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
 			listProduitsList.setVisibility(View.VISIBLE);
+			listProduitsList.setAdapter(produitAdapter);
 			listProduitsGrid.setVisibility(View.GONE);
 		}
 
 		else if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
 			listProduitsList.setVisibility(View.GONE);
+			listProduitsGrid.setAdapter(produitAdapter);
 			listProduitsGrid.setVisibility(View.VISIBLE);
 		}
 	}
@@ -124,7 +130,7 @@ public class Products extends Fragment {
 		protected String doInBackground(String... params) {
 			// TODO Auto-generated method stub
 			
-			String jsonProduit=HelperHttp.getJSONResponseFromURL(url);
+			String jsonProduit=HelperHttp.getJSONResponseFromURL(urlCat);
 			parseJsonProduit(produits, jsonProduit);
 			
 			Log.d("doInBackGroud ","Done");
@@ -133,10 +139,9 @@ public class Products extends Fragment {
 		
 		@Override
 		protected void onPostExecute(String result) {
-			produitAdapter=new ProduitAdapter(getActivity(), R.layout.produit_detail_row, produits);
-			listProduitsList.setVisibility(View.VISIBLE);
-			listProduitsList.setAdapter(produitAdapter);
-			listProduitsGrid.setAdapter(produitAdapter);
+			
+			
+
 			barProgressDialog.dismiss();
 			Log.d("onPostExecute ","Done");
 			super.onPostExecute(result);

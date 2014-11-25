@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.esprit.entities.Produit;
+import com.esprit.miracle.Products;
 import com.esprit.miracle.R;
 import com.esprit.utils.ImageLoader;
 
@@ -58,7 +59,7 @@ public class ProduitAdapter extends ArrayAdapter<Produit>{
 		}
 		Produit p = produits.get(position);
 		System.out.println(p.getLibelle()+ " *** "+p.getImagePath());
-		imageLoader.DisplayImage(p.getImagePath(), holder.produitImg);
+		imageLoader.DisplayImage(Products.ipServer+p.getImagePath(), holder.produitImg);
 		holder.produitLibelle.setText(p.getLibelle());
 		holder.produitPrix.setText(p.getPrix()+" DT");
 		

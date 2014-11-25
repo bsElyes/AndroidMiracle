@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.esprit.utils.GMapV2Direction;
+import com.esprit.utils.GPSTracker;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -23,13 +24,17 @@ import com.google.android.gms.maps.model.PolylineOptions;
 public class Magasins extends Activity {
 	public GoogleMap mMap;	
 	public GMapV2Direction md;
-	
-	LatLng fromPosition =new LatLng(36.899613, 10.189933);
-	LatLng toPosition = new LatLng(36.8978736,10.1892079);
+	public GPSTracker mGPS ;
+	LatLng fromPosition =null;
+	LatLng toPosition = new LatLng(36.8339127,10.1789832);
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_magasins);
+		
+		
+		mGPS=new GPSTracker(this);
+		fromPosition=new LatLng(mGPS.getLatitude(),mGPS.getLongitude());
 		//mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(36.899613, 10.189933) , 16.0f) );
 		//fromPosition=new LatLng(mMap.getMyLocation().getLatitude(),mMap.getMyLocation().getLongitude());
 
@@ -46,7 +51,7 @@ public class Magasins extends Activity {
 		mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
 		mMap.setMyLocationEnabled(true);
 
-		LatLng coordinates = new LatLng(36.8609427,10.1942599);		
+		LatLng coordinates = new LatLng(36.8339127,10.1789832);		
 		mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 16));
 		
 		mMap.addMarker(new MarkerOptions().position(fromPosition).title("Vous ete ici !"));
