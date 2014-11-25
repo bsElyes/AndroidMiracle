@@ -30,7 +30,7 @@ public class ProduitAdapter extends ArrayAdapter<Produit>{
 	public ProduitAdapter(Context context, int layoutResourceId
 			, List<Produit> produits) {
 		super(context, layoutResourceId, produits);
-		Log.v("product",produits+"");
+		
 
 		this.layoutResourceId = layoutResourceId;
 		this.context = context;

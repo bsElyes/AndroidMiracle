@@ -28,7 +28,7 @@ public class Products extends Fragment {
 	GridView listProduitsGrid;
 	List<Produit> produits=new ArrayList<Produit>();;
 	ProduitAdapter produitAdapter;
-	public static String  ipServer="http://172.16.203.142:80";
+	public static String  ipServer="http://192.168.1.2:80";
 	String urlCat="/scripts/produits.php?id=";
 
 	
@@ -55,35 +55,31 @@ public class Products extends Fragment {
 //		}
 		
 		listProduitsList=(ListView ) v.findViewById(R.id.lv_produitsList);
-		listProduitsGrid=(GridView)v.findViewById(R.id.lv_produitsGrid);
-		
-
-		
-		produitAdapter=new ProduitAdapter(getActivity(), R.layout.produit_detail_row, produits);
-		onConfigurationChanged(getResources().getConfiguration());
-		
-		new AsycGetProducts().execute();
-		
+		listProduitsGrid=(GridView)v.findViewById(R.id.lv_produitsGrid);	
 		return v;
 	}
 	
-	
+	@Override
+	public void onStart() {
+		onConfigurationChanged(getResources().getConfiguration());
+		new AsycGetProducts().execute();
+		super.onStart();
+	}
 	
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 
 		if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
-			listProduitsList.setVisibility(View.VISIBLE);
-			listProduitsList.setAdapter(produitAdapter);
+			listProduitsList.setVisibility(View.VISIBLE);			
 			listProduitsGrid.setVisibility(View.GONE);
 		}
 
 		else if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-			listProduitsList.setVisibility(View.GONE);
-			listProduitsGrid.setAdapter(produitAdapter);
+			listProduitsList.setVisibility(View.GONE);			
 			listProduitsGrid.setVisibility(View.VISIBLE);
 		}
+
 	}
 	
 	
@@ -111,7 +107,7 @@ public class Products extends Fragment {
 		Log.d("parseJsonProduit ","Done");
 	}
 	
-	class AsycGetProducts extends AsyncTask<String, Void, String>{
+	class AsycGetProducts extends AsyncTask<String, String, String>{
 		ProgressDialog barProgressDialog = new ProgressDialog(getActivity());
 		
 		@Override
@@ -133,14 +129,20 @@ public class Products extends Fragment {
 			String jsonProduit=HelperHttp.getJSONResponseFromURL(urlCat);
 			parseJsonProduit(produits, jsonProduit);
 			
+			Log.v("product",produits+"");
+			
 			Log.d("doInBackGroud ","Done");
 			return null;
 		}
 		
 		@Override
 		protected void onPostExecute(String result) {
-			
-			
+			Log.d("onPostExecute ","start");
+
+			produitAdapter = new ProduitAdapter(getActivity(), R.layout.produit_detail_row, produits);
+
+				listProduitsGrid.setAdapter(produitAdapter);
+				listProduitsList.setAdapter(produitAdapter);
 
 			barProgressDialog.dismiss();
 			Log.d("onPostExecute ","Done");

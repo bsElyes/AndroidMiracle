@@ -7,9 +7,13 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_one_video">One_video</string>
     <string name="title_activity_acceuil">AcceuilActivity</string>
-    <string name="title_section1">Produit 1</string>
-    <string name="title_section2">Produit 2</string>
-    <string name="title_section3">Produit 3</string>
+    <string name="title_section1">Soins</string>
+    <string name="title_section2">Maquillage</string>
+    <string name="title_section3">Parfums Homme</string>
+    <string name="title_section4">Parfums Femme</string>
+    <string name="title_section5">Parfums Mixte</string>
+    <string name="title_section6">Coffrets pour Femme</string>
+    <string name="title_section7">Coffrets pour Homme</string>
     <string name="title_activity_catalogues">Catalogues des Produits</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

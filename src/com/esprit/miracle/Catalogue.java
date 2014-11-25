@@ -48,6 +48,18 @@ public class Catalogue extends Activity implements
 	        case 2:
 	        	fragment = new Products(3);
 	            break;
+	        case 3:
+	        	fragment = new Products(4);
+	            break;
+	        case 4:
+	        	fragment = new Products(5);
+	            break;
+	        case 5:
+	        	fragment = new Products(6);
+	            break;
+	        case 6:
+	        	fragment = new Products(7);
+	            break;
 	    }
 	    fragmentManager.beginTransaction()
 	        .replace(R.id.container, fragment)

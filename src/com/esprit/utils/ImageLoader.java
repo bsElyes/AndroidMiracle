@@ -73,7 +73,7 @@ public class ImageLoader {
 			conn.setInstanceFollowRedirects(true);
 			InputStream is = conn.getInputStream();
 			BitmapFactory.Options options = new BitmapFactory.Options();
-			options.inSampleSize = 8;
+			options.inSampleSize = 1;
 			bitmap = BitmapFactory.decodeStream(is, null, options);
 			// OutputStream os = new FileOutputStream(f);
 			// Utils.CopyStream(is, os);
