@@ -7,8 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.esprit.fragments.MyCardFragment;
-
 public class MainActivity extends Activity {
 
 	@Override

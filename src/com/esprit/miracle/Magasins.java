@@ -11,6 +11,7 @@ import android.os.StrictMode;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.esprit.utils.GMapV2Direction;
 import com.esprit.utils.GPSTracker;
@@ -46,6 +47,7 @@ public class Magasins extends Activity {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
+        TextView tvDist=(TextView) findViewById(R.id.distance_m);
         
         md = new GMapV2Direction();
 		mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
@@ -60,6 +62,7 @@ public class Magasins extends Activity {
 		Document doc = md.getDocument(fromPosition, toPosition, GMapV2Direction.MODE_DRIVING);
 		int duration = md.getDurationValue(doc);
 		String distance = md.getDistanceText(doc);
+		tvDist.setText(distance);
 		String start_address = md.getStartAddress(doc);
 		String copy_right = md.getCopyRights(doc);
 		Log.d("Durée",duration+"");
