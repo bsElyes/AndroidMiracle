@@ -1251,11 +1251,12 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f0a0002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f05001e;
+        public static final int abc_search_url_text_holo=0x7f050020;
         public static final int abc_search_url_text_normal=0x7f050019;
         public static final int abc_search_url_text_pressed=0x7f05001b;
         public static final int abc_search_url_text_selected=0x7f05001a;
         public static final int actionbar_color=0x7f05001c;
+        public static final int blue=0x7f05001f;
         public static final int common_action_bar_splitter=0x7f05000b;
         /**  Sign-in Button Colors 
          */
@@ -1268,8 +1269,9 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f050008;
         public static final int common_signin_btn_light_text_focused=0x7f050009;
         public static final int common_signin_btn_light_text_pressed=0x7f050007;
-        public static final int common_signin_btn_text_dark=0x7f05001f;
-        public static final int common_signin_btn_text_light=0x7f050020;
+        public static final int common_signin_btn_text_dark=0x7f050021;
+        public static final int common_signin_btn_text_light=0x7f050022;
+        public static final int dark_grey=0x7f05001e;
         public static final int drawer_arrow_second_color=0x7f05001d;
         public static final int green=0x7f050001;
         public static final int ldrawer_color=0x7f050000;
@@ -1291,8 +1293,8 @@ containing a value of this type.
         public static final int wallet_hint_foreground_holo_light=0x7f050013;
         public static final int wallet_holo_blue_light=0x7f050017;
         public static final int wallet_link_text_light=0x7f050018;
-        public static final int wallet_primary_text_holo_light=0x7f050021;
-        public static final int wallet_secondary_text_holo_dark=0x7f050022;
+        public static final int wallet_primary_text_holo_light=0x7f050023;
+        public static final int wallet_secondary_text_holo_dark=0x7f050024;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -1609,7 +1611,6 @@ containing a value of this type.
         public static final int collapseActionView=0x7f0b0023;
         public static final int container=0x7f0b004f;
         public static final int contentDialog=0x7f0b005e;
-        public static final int count=0x7f0b0064;
         public static final int default_activity_button=0x7f0b003a;
         public static final int dialog=0x7f0b0027;
         public static final int disableHome=0x7f0b001c;
@@ -1628,11 +1629,13 @@ containing a value of this type.
         public static final int homeAsUp=0x7f0b001d;
         public static final int hybrid=0x7f0b0006;
         public static final int icon=0x7f0b003c;
-        public static final int icon_menu=0x7f0b0062;
         public static final int ifRoom=0x7f0b0024;
         public static final int image=0x7f0b0039;
         public static final int imageView_detail_P=0x7f0b0058;
         public static final int img_produit=0x7f0b0069;
+        public static final int item_navigation_container=0x7f0b0062;
+        public static final int item_navigation_img=0x7f0b0063;
+        public static final int item_navigation_title=0x7f0b0064;
         public static final int listMode=0x7f0b001a;
         public static final int listRec=0x7f0b0059;
         public static final int list_item=0x7f0b003b;
@@ -1640,7 +1643,6 @@ containing a value of this type.
         public static final int lv_produitsList=0x7f0b0065;
         public static final int map=0x7f0b0052;
         public static final int match_parent=0x7f0b0012;
-        public static final int menu_text=0x7f0b0063;
         public static final int message=0x7f0b005f;
         public static final int middle=0x7f0b002b;
         public static final int monochrome=0x7f0b0019;

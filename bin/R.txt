@@ -165,11 +165,12 @@ int bool abc_config_actionMenuItemAllCaps 0x7f0a0005
 int bool abc_config_allowActionMenuItemTextWithIcon 0x7f0a0004
 int bool abc_config_showMenuShortcutsWhenKeyboardPresent 0x7f0a0003
 int bool abc_split_action_bar_is_narrow 0x7f0a0002
-int color abc_search_url_text_holo 0x7f05001e
+int color abc_search_url_text_holo 0x7f050020
 int color abc_search_url_text_normal 0x7f050019
 int color abc_search_url_text_pressed 0x7f05001b
 int color abc_search_url_text_selected 0x7f05001a
 int color actionbar_color 0x7f05001c
+int color blue 0x7f05001f
 int color common_action_bar_splitter 0x7f05000b
 int color common_signin_btn_dark_text_default 0x7f050002
 int color common_signin_btn_dark_text_disabled 0x7f050004
@@ -180,8 +181,9 @@ int color common_signin_btn_light_text_default 0x7f050006
 int color common_signin_btn_light_text_disabled 0x7f050008
 int color common_signin_btn_light_text_focused 0x7f050009
 int color common_signin_btn_light_text_pressed 0x7f050007
-int color common_signin_btn_text_dark 0x7f05001f
-int color common_signin_btn_text_light 0x7f050020
+int color common_signin_btn_text_dark 0x7f050021
+int color common_signin_btn_text_light 0x7f050022
+int color dark_grey 0x7f05001e
 int color drawer_arrow_second_color 0x7f05001d
 int color green 0x7f050001
 int color ldrawer_color 0x7f050000
@@ -198,8 +200,8 @@ int color wallet_hint_foreground_holo_dark 0x7f050014
 int color wallet_hint_foreground_holo_light 0x7f050013
 int color wallet_holo_blue_light 0x7f050017
 int color wallet_link_text_light 0x7f050018
-int color wallet_primary_text_holo_light 0x7f050021
-int color wallet_secondary_text_holo_dark 0x7f050022
+int color wallet_primary_text_holo_light 0x7f050023
+int color wallet_secondary_text_holo_dark 0x7f050024
 int dimen abc_action_bar_default_height 0x7f060008
 int dimen abc_action_bar_icon_vertical_padding 0x7f060009
 int dimen abc_action_bar_progress_bar_size 0x7f060010
@@ -409,7 +411,6 @@ int id classic 0x7f0b0017
 int id collapseActionView 0x7f0b0023
 int id container 0x7f0b004f
 int id contentDialog 0x7f0b005e
-int id count 0x7f0b0064
 int id default_activity_button 0x7f0b003a
 int id dialog 0x7f0b0027
 int id disableHome 0x7f0b001c
@@ -428,11 +429,13 @@ int id home 0x7f0b0000
 int id homeAsUp 0x7f0b001d
 int id hybrid 0x7f0b0006
 int id icon 0x7f0b003c
-int id icon_menu 0x7f0b0062
 int id ifRoom 0x7f0b0024
 int id image 0x7f0b0039
 int id imageView_detail_P 0x7f0b0058
 int id img_produit 0x7f0b0069
+int id item_navigation_container 0x7f0b0062
+int id item_navigation_img 0x7f0b0063
+int id item_navigation_title 0x7f0b0064
 int id listMode 0x7f0b001a
 int id listRec 0x7f0b0059
 int id list_item 0x7f0b003b
@@ -440,7 +443,6 @@ int id lv_produitsGrid 0x7f0b0066
 int id lv_produitsList 0x7f0b0065
 int id map 0x7f0b0052
 int id match_parent 0x7f0b0012
-int id menu_text 0x7f0b0063
 int id message 0x7f0b005f
 int id middle 0x7f0b002b
 int id monochrome 0x7f0b0019
