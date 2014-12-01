@@ -18,7 +18,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!--
      The following two permissions are not required to use
-     Google Maps Android API v2, but are recommended.
+     Google Maps Android API v2, but are recommended.
     -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -31,16 +31,11 @@
         <activity
             android:name=".SplashScreen"
             android:theme="@android:style/Theme.Holo.NoActionBar" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            
         </activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" >
-            
         </activity>
         <activity
             android:name=".Videos"
@@ -69,6 +64,14 @@
         <activity
             android:name=".ProductDetails"
             android:label="@string/title_activity_product_details" >
+        </activity>
+        <activity
+            android:name=".MainMenu"
+            android:label="@string/title_activity_main_menu" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

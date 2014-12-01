@@ -2,14 +2,14 @@ package com.esprit.adapter;
 
 import java.util.ArrayList;
 
-import com.esprit.entities.Category;
-import com.esprit.miracle.R;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.esprit.entities.Category;
+import com.esprit.miracle.R;
 
 
 public class CategoryAdapter extends BaseAdapter{
