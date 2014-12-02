@@ -1,19 +1,38 @@
 package com.esprit.miracle;
 
+import java.util.ArrayList;
+
+import org.w3c.dom.Document;
+
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.net.Uri;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.esprit.fragments.AboutFragment;
+import com.esprit.utils.GMapV2Direction;
+import com.esprit.utils.GPSTracker;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.ikimuhendis.ldrawer.ActionBarDrawerToggle;
 import com.ikimuhendis.ldrawer.DrawerArrowDrawable;
 
@@ -28,6 +47,16 @@ public class MainMenu extends Activity {
     private DrawerArrowDrawable drawerArrow;
     private boolean drawerArrowColor;
 
+    //MAP
+    private GoogleMap mMap;
+    private MapFragment mMapFragment;
+    private GPSTracker mGPS ;
+    public GMapV2Direction md;
+    
+    LatLng fromPosition =new LatLng(36.8354531, 10.1463117);
+	LatLng toPosition = new LatLng(36.8498327,10.2203717);
+	
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +67,11 @@ public class MainMenu extends Activity {
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.navdrawer);
-
-
+        mMapFragment = ((MapFragment)getFragmentManager().findFragmentById(R.id.mapV2));
+        mMap = mMapFragment.getMap();
+        
+        MapDrawer(mMap);
+        
         drawerArrow = new DrawerArrowDrawable(this) {
             @Override
             public boolean isLayoutRtl() {
@@ -65,13 +97,16 @@ public class MainMenu extends Activity {
 
 
         String[] values = new String[]{
-            "Catalogue)",
-            "Stop Animation (Home icon)",
-            "Start Animation",
-            "Change Color",
-            "GitHub Page",
-            "Share",
-            "Rate"
+            "Acceuil",
+            "Catalogue",
+            "   Soins",
+            "   Maquillage",
+            "   Parfums Homme",
+            "   Parfums Femme",
+            "   Parfums Mixte",
+            "   Coffrets pour Homme",
+            "   Coffrets pour Femme",
+            "About"
         };
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
             android.R.layout.simple_list_item_1, android.R.id.text1, values);
@@ -79,65 +114,70 @@ public class MainMenu extends Activity {
         //adapter
         mDrawerList.setAdapter(adapter);
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            
+        
+        FragmentManager fm= getFragmentManager();
+        Fragment fragment =null;
+        
+       
+        
 			@Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 				Intent intent;
                 switch (position) {
                     case 0:
-	                      	intent = new Intent(MainMenu.this , Catalogue.class);
-	                		startActivity(intent);
-	                		overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+	                      	//fm.beginTransaction().hide(FragmentMap).commit();
                         break;
                     case 1:
-                    	intent = new Intent(MainMenu.this , MyCard.class);
-                		startActivity(intent);
-                		overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    	Toast t=Toast.makeText(getApplicationContext(), "Veuillez Choisir une Categorie", 2000);
+                    	t.show();
                         break;
                     case 2:
-                    	intent = new Intent(MainMenu.this , Videos.class);
-                		startActivity(intent);
-                		overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    	fragment = new Products(1);
                         break;
                     case 3:
-                        if (drawerArrowColor) {
-                            drawerArrowColor = false;
-                            drawerArrow.setColor(R.color.ldrawer_color);
-                        } else {
-                            drawerArrowColor = true;
-                            drawerArrow.setColor(R.color.drawer_arrow_second_color);
-                        }
-                        mDrawerToggle.syncState();
+                    	fragment = new Products(2);
                         break;
                     case 4:
-                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/IkiMuhendis/LDrawer"));
-                        startActivity(browserIntent);
+                    	fragment = new Products(3);
                         break;
                     case 5:
-                        Intent share = new Intent(Intent.ACTION_SEND);
-                        share.setType("text/plain");
-                        share.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        share.putExtra(Intent.EXTRA_SUBJECT,
-                            getString(R.string.app_name));
-                        share.putExtra(Intent.EXTRA_TEXT, getString(R.string.app_description) + "\n" +
-                            "GitHub Page :  https://github.com/IkiMuhendis/LDrawer\n" +
-                            "Sample App : https://play.google.com/store/apps/details?id=" +
-                            getPackageName());
-                        startActivity(Intent.createChooser(share,
-                            getString(R.string.app_name)));
+                    	fragment = new Products(4);
                         break;
                     case 6:
-                        String appUrl = "https://play.google.com/store/apps/details?id=" + getPackageName();
-                        Intent rateIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(appUrl));
-                        startActivity(rateIntent);
+                    	fragment = new Products(5);
+                        break;
+                    case 7:
+                    	fragment = new Products(6);
+                        break;
+                    case 8:
+                    	fragment = new Products(7);
+                        break;
+                    case 9:
+                    	fragment = new Products(8);
+                        break;
+                    case 10:
+                    	fragment = new AboutFragment();
                         break;
                 }
-
+                fm.beginTransaction()
+    	        .replace(R.id.containerV2, fragment)
+    	        .commit();
+                mDrawerLayout.closeDrawer(mDrawerList);
+                
+                mMapFragment.getView().setVisibility(View.INVISIBLE);
+                
             }
         });
     }
 
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	// TODO Auto-generated method stub
+    	getMenuInflater().inflate(R.menu.magasins, menu);
+    	return true;
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -146,6 +186,10 @@ public class MainMenu extends Activity {
             } else {
                 mDrawerLayout.openDrawer(mDrawerList);
             }
+        }
+        
+        if(item.getItemId()==R.id.action_map){
+        	mMapFragment.getView().setVisibility(View.VISIBLE);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -160,5 +204,46 @@ public class MainMenu extends Activity {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+    
+    
+    public void MapDrawer(GoogleMap mMap){
+    	mGPS=new GPSTracker(this);
+    	
+    	if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+    	 md = new GMapV2Direction();
+ 		
+ 		mMap.setMyLocationEnabled(true);
+
+ 		LatLng coordinates = new LatLng(36.8339127,10.1789832);		
+ 		mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 16));
+ 		
+ 		mMap.addMarker(new MarkerOptions().position(fromPosition).title("Vous ete ici !"));
+ 		mMap.addMarker(new MarkerOptions().position(toPosition).title("Magasin Miracle"));
+ 		
+ 		Document doc = md.getDocument(fromPosition, toPosition, GMapV2Direction.MODE_DRIVING);
+ 		int duration = md.getDurationValue(doc);
+ 		String distance = md.getDistanceText(doc);
+ 		
+ 		String start_address = md.getStartAddress(doc);
+ 		String copy_right = md.getCopyRights(doc);
+ 		
+ 		
+ 		Log.d("Durée",duration+"");
+ 		Log.d("Distance :",distance+"");
+ 		Log.d("start_address",start_address+"");
+ 		Log.d("copy_right",copy_right+"");
+
+ 		ArrayList<LatLng> directionPoint = md.getDirection(doc);
+ 		PolylineOptions rectLine = new PolylineOptions().width(3).color(Color.RED);
+ 		
+ 		for(int i = 0 ; i < directionPoint.size() ; i++) {			
+ 			rectLine.add(directionPoint.get(i));
+ 		}
+ 		
+ 		mMap.addPolyline(rectLine);
     }
 }

@@ -20,7 +20,7 @@ public class SplashScreen extends Activity {
 			
 			@Override
 			public void run() {
-				Intent i=new Intent(SplashScreen.this,MainActivity.class);
+				Intent i=new Intent(SplashScreen.this,MainMenu.class);
 				startActivity(i);
 				overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 				finish();

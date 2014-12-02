@@ -8,12 +8,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-<com.gc.materialdesign.views.ButtonRectangle 
-    android:id="@+id/distance_m"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    
-    />
+<com.gc.materialdesign.views.ButtonRectangle
+        android:id="@+id/distance_m"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="TEST DISTANCE"       
+        />
 
 <fragment
     android:id="@+id/map"

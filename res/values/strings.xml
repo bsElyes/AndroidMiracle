@@ -31,8 +31,9 @@
     <string name="action_example">Example action</string>
     <string name="title_activity_produit">Produit</string>
     <string name="title_activity_product_details">ProductDetails</string>
-    <string name="title_activity_main_menu">MainMenu</string>
+    <string name="title_activity_main_menu">Miracle (BETA)</string>
     <string name="app_description">Android drawer icon with material design animation</string>
     <string name="drawer_open">drawer_open</string>
     <string name="drawer_close">drawer_close</string>
+    <string name="action_map">Magasins Map</string>
 </resources>

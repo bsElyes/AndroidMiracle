@@ -11,6 +11,7 @@ import android.os.StrictMode;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.esprit.utils.GMapV2Direction;
@@ -26,7 +27,7 @@ public class Magasins extends Activity {
 	public GoogleMap mMap;	
 	public GMapV2Direction md;
 	public GPSTracker mGPS ;
-	LatLng fromPosition =null;
+	LatLng fromPosition =new LatLng(36.8354531, 10.1463117);
 	LatLng toPosition = new LatLng(36.8498327,10.2203717);
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class Magasins extends Activity {
 		
 		
 		mGPS=new GPSTracker(this);
-		fromPosition=new LatLng(mGPS.getLatitude(),mGPS.getLongitude());
+		//fromPosition=new LatLng(mGPS.getLatitude(),mGPS.getLongitude());
 		//mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(36.899613, 10.189933) , 16.0f) );
 		//fromPosition=new LatLng(mMap.getMyLocation().getLatitude(),mMap.getMyLocation().getLongitude());
 
@@ -47,7 +48,7 @@ public class Magasins extends Activity {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-        TextView tvDist=(TextView) findViewById(R.id.distance_m);
+		com.gc.materialdesign.views.ButtonRectangle  tvDist=(com.gc.materialdesign.views.ButtonRectangle) findViewById(R.id.distance_m);
         
         md = new GMapV2Direction();
 		mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
@@ -62,9 +63,11 @@ public class Magasins extends Activity {
 		Document doc = md.getDocument(fromPosition, toPosition, GMapV2Direction.MODE_DRIVING);
 		int duration = md.getDurationValue(doc);
 		String distance = md.getDistanceText(doc);
-		tvDist.setText(distance);
+		tvDist.setText("Distance : "+distance);
 		String start_address = md.getStartAddress(doc);
 		String copy_right = md.getCopyRights(doc);
+		
+		
 		Log.d("Durée",duration+"");
 		Log.d("Distance :",distance+"");
 		Log.d("start_address",start_address+"");

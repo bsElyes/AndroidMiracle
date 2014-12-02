@@ -3,10 +3,11 @@
     tools:context="com.esprit.miracle.Magasins" >
 
     <item
-        android:id="@+id/action_search"
-        android:actionViewClass="android.widget.SearchView"
-        android:icon="@drawable/icon_action_search"
-        android:showAsAction="collapseActionView|ifRoom|withText"
-        android:title="@string/action_search"/>
+        android:id="@+id/action_map"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_action_map"
+        
+        android:showAsAction="ifRoom"
+        android:title="@string/action_map"/>
 
 </menu>
