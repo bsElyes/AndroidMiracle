@@ -36,4 +36,5 @@
     <string name="drawer_open">drawer_open</string>
     <string name="drawer_close">drawer_close</string>
     <string name="action_map">Magasins Map</string>
+    <string name="action_shop">Cart</string>
 </resources>

@@ -5,9 +5,15 @@
     <item
         android:id="@+id/action_map"
         android:orderInCategory="100"
-        android:icon="@drawable/ic_action_map"
-        
+        android:icon="@drawable/ic_action_map"        
         android:showAsAction="ifRoom"
         android:title="@string/action_map"/>
+  
+    <item
+        android:id="@+id/action_shop"
+        android:orderInCategory="100"
+        android:icon="@drawable/shop"        
+        android:showAsAction="ifRoom"
+        android:title="@string/action_shop"/>
 
 </menu>

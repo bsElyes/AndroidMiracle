@@ -42,31 +42,32 @@ public final class R {
 		public static final int ic_reloj_max = 0x7f020093;
 		public static final int shadow_down = 0x7f0200a7;
 		public static final int shadow_right = 0x7f0200a8;
-		public static final int sprite_check = 0x7f0200ae;
+		public static final int sprite_check = 0x7f0200af;
 	}
 	public static final class id {
-		public static final int blue = 0x7f0b005f;
-		public static final int button_accept = 0x7f0b0063;
-		public static final int button_cancel = 0x7f0b0062;
-		public static final int buttonflat = 0x7f0b006c;
-		public static final int contentDialog = 0x7f0b0060;
-		public static final int green = 0x7f0b005e;
-		public static final int message = 0x7f0b0061;
-		public static final int number_indicator_spinner_content = 0x7f0b0067;
-		public static final int red = 0x7f0b005d;
-		public static final int shape_bacground = 0x7f0b006e;
-		public static final int snackbar = 0x7f0b006b;
-		public static final int text = 0x7f0b006d;
+		public static final int blue = 0x7f0b0061;
+		public static final int button_accept = 0x7f0b0065;
+		public static final int button_cancel = 0x7f0b0064;
+		public static final int buttonflat = 0x7f0b006f;
+		public static final int contentDialog = 0x7f0b0062;
+		public static final int green = 0x7f0b0060;
+		public static final int message = 0x7f0b0063;
+		public static final int number_indicator_spinner_content = 0x7f0b006a;
+		public static final int progressBarCircularIndetermininate = 0x7f0b005c;
+		public static final int red = 0x7f0b005f;
+		public static final int shape_bacground = 0x7f0b0071;
+		public static final int snackbar = 0x7f0b006e;
+		public static final int text = 0x7f0b0070;
 		public static final int title = 0x7f0b003d;
-		public static final int viewColor = 0x7f0b005c;
+		public static final int viewColor = 0x7f0b005e;
 	}
 	public static final class layout {
 		public static final int activity_main = 0x7f03001a;
 		public static final int color_selector = 0x7f030020;
 		public static final int dialog = 0x7f030021;
-		public static final int number_indicator_spinner = 0x7f030025;
-		public static final int snackbar = 0x7f030027;
-		public static final int text = 0x7f030029;
+		public static final int number_indicator_spinner = 0x7f030026;
+		public static final int snackbar = 0x7f030028;
+		public static final int text = 0x7f03002a;
 	}
 	public static final class string {
 		public static final int app_name = 0x7f070000;

@@ -11,6 +11,7 @@ import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +26,7 @@ import android.widget.ListView;
 import com.esprit.adapter.ProduitAdapter;
 import com.esprit.entities.Produit;
 import com.esprit.utils.HelperHttp;
+import com.readystatesoftware.viewbadger.BadgeView;
 
 
 public class Products extends Fragment {
@@ -34,7 +36,7 @@ public class Products extends Fragment {
 	ProduitAdapter produitAdapter;
 	public static String  ipServer="http://192.168.1.3:80";
 	String urlCat="/scripts/produits.php?id=";
-
+	BadgeView badge2;
 	boolean done=false;
 	public Products(){
 		urlCat=ipServer+urlCat+""+1;
@@ -49,7 +51,7 @@ public class Products extends Fragment {
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View v = inflater.inflate(R.layout.fragment_produits, container , false);
-
+		
 //		for(int i =0 ; i <5 ; i++){
 //			Produit p=new Produit();
 //			p.setLibelle(",najnnkkj : "+i);
@@ -144,7 +146,7 @@ public class Products extends Fragment {
 			Log.d("onPreExecute ","Done");
 			super.onPreExecute();
 		}
-
+		
 		@Override
 		protected String doInBackground(String... params) {
 			// TODO Auto-generated method stub

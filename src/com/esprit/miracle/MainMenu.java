@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -35,6 +36,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.ikimuhendis.ldrawer.ActionBarDrawerToggle;
 import com.ikimuhendis.ldrawer.DrawerArrowDrawable;
+import com.joanzapata.android.iconify.Iconify;
+
 
 
 @SuppressLint("ResourceAsColor")
@@ -52,8 +55,8 @@ public class MainMenu extends Activity {
     private MapFragment mMapFragment;
     private GPSTracker mGPS ;
     public GMapV2Direction md;
-    
-    LatLng fromPosition =new LatLng(36.8354531, 10.1463117);
+    private static boolean showMap=true;
+    LatLng fromPosition =new LatLng(36.8339127,10.1789832);
 	LatLng toPosition = new LatLng(36.8498327,10.2203717);
 	
 	
@@ -67,11 +70,11 @@ public class MainMenu extends Activity {
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.navdrawer);
+        
         mMapFragment = ((MapFragment)getFragmentManager().findFragmentById(R.id.mapV2));
-        mMap = mMapFragment.getMap();
-        
-        MapDrawer(mMap);
-        
+        mMap = mMapFragment.getMap();     
+		mMapFragment.getView().setVisibility(View.INVISIBLE);
+		MapDrawer(mMap);
         drawerArrow = new DrawerArrowDrawable(this) {
             @Override
             public boolean isLayoutRtl() {
@@ -94,8 +97,12 @@ public class MainMenu extends Activity {
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
-
-
+        
+//        mDrawerList.addNavigationItem("Acceuil", R.drawable.prod, true);
+//        mDrawerList.addNavigationItem("Catalogue", R.drawable.prod, false);
+//        mDrawerList.addNavigationItem("Acceuil",R.drawable.prod , false);
+//        mDrawerList.addNavigationItem("Acceuil", R.drawable.prod, false);
+        
         String[] values = new String[]{
             "Acceuil",
             "Catalogue",
@@ -111,64 +118,117 @@ public class MainMenu extends Activity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
             android.R.layout.simple_list_item_1, android.R.id.text1, values);
         
-        //adapter
+        
         mDrawerList.setAdapter(adapter);
-        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       mDrawerList.setOnItemClickListener(new OnItemClickListener() {
+
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+			Intent intent;
+       	 FragmentManager fm= getFragmentManager();
+          Fragment fragment =null;
+          switch (position) {
+              case 0:
+                    	//fm.beginTransaction().hide(FragmentMap).commit();
+                  break;
+              case 1:
+              	Toast t=Toast.makeText(getApplicationContext(), "Veuillez Choisir une Categorie", 2000);
+              	t.show();
+                  break;
+              case 2:
+              	fragment = new Products(1);
+                  break;
+              case 3:
+              	fragment = new Products(2);
+                  break;
+              case 4:
+              	fragment = new Products(3);
+                  break;
+              case 5:
+              	fragment = new Products(4);
+                  break;
+              case 6:
+              	fragment = new Products(5);
+                  break;
+              case 7:
+              	fragment = new Products(6);
+                  break;
+              case 8:
+              	fragment = new Products(7);
+                  break;
+              case 9:
+              	fragment = new Products(8);
+                  break;
+              case 10:
+              	fragment = new AboutFragment();
+                  break;
+			
+		}
+        fm.beginTransaction()
+        .replace(R.id.containerV2, fragment)
+        .commit();
+        mDrawerLayout.closeDrawer(mDrawerList);
         
-        FragmentManager fm= getFragmentManager();
-        Fragment fragment =null;
-        
-       
-        
-			@Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-				Intent intent;
-                switch (position) {
-                    case 0:
-	                      	//fm.beginTransaction().hide(FragmentMap).commit();
-                        break;
-                    case 1:
-                    	Toast t=Toast.makeText(getApplicationContext(), "Veuillez Choisir une Categorie", 2000);
-                    	t.show();
-                        break;
-                    case 2:
-                    	fragment = new Products(1);
-                        break;
-                    case 3:
-                    	fragment = new Products(2);
-                        break;
-                    case 4:
-                    	fragment = new Products(3);
-                        break;
-                    case 5:
-                    	fragment = new Products(4);
-                        break;
-                    case 6:
-                    	fragment = new Products(5);
-                        break;
-                    case 7:
-                    	fragment = new Products(6);
-                        break;
-                    case 8:
-                    	fragment = new Products(7);
-                        break;
-                    case 9:
-                    	fragment = new Products(8);
-                        break;
-                    case 10:
-                    	fragment = new AboutFragment();
-                        break;
-                }
-                fm.beginTransaction()
-    	        .replace(R.id.containerV2, fragment)
-    	        .commit();
-                mDrawerLayout.closeDrawer(mDrawerList);
-                
-                mMapFragment.getView().setVisibility(View.INVISIBLE);
-                
-            }
-        });
+        mMapFragment.getView().setVisibility(View.INVISIBLE);
+       }
+	});
+//    }  	
+//        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//        
+//        
+//       
+//        	 FragmentManager fm= getFragmentManager();
+//             Fragment fragment =null;
+//			@Override
+//            public void onItemClick(AdapterView<?> parent, View view,
+//                                    int position, long id) {
+//				Intent intent;
+//                switch (position) {
+//                    case 0:
+//	                      	//fm.beginTransaction().hide(FragmentMap).commit();
+//                        break;
+//                    case 1:
+//                    	Toast t=Toast.makeText(getApplicationContext(), "Veuillez Choisir une Categorie", 2000);
+//                    	t.show();
+//                        break;
+//                    case 2:
+//                    	fragment = new Products(1);
+//                        break;
+//                    case 3:
+//                    	fragment = new Products(2);
+//                        break;
+//                    case 4:
+//                    	fragment = new Products(3);
+//                        break;
+//                    case 5:
+//                    	fragment = new Products(4);
+//                        break;
+//                    case 6:
+//                    	fragment = new Products(5);
+//                        break;
+//                    case 7:
+//                    	fragment = new Products(6);
+//                        break;
+//                    case 8:
+//                    	fragment = new Products(7);
+//                        break;
+//                    case 9:
+//                    	fragment = new Products(8);
+//                        break;
+//                    case 10:
+//                    	fragment = new AboutFragment();
+//                        break;
+//                }
+//                fm.beginTransaction()
+//    	        .replace(R.id.containerV2, fragment)
+//    	        .commit();
+//                mDrawerLayout.closeDrawer(mDrawerList);
+//                
+//                mMapFragment.getView().setVisibility(View.INVISIBLE);
+//                
+//            }
+//        });
     }
 
     
@@ -189,7 +249,16 @@ public class MainMenu extends Activity {
         }
         
         if(item.getItemId()==R.id.action_map){
-        	mMapFragment.getView().setVisibility(View.VISIBLE);
+        	if(showMap){
+        		
+                           
+        		mMapFragment.getView().setVisibility(View.VISIBLE);
+        		showMap=false;
+        	}else{
+        		mMapFragment.getView().setVisibility(View.INVISIBLE);
+        		showMap=true;
+        	}
+        	
         }
         return super.onOptionsItemSelected(item);
     }

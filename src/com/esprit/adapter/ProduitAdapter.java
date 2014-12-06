@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.esprit.entities.Produit;
 import com.esprit.miracle.Products;
 import com.esprit.miracle.R;
 import com.esprit.utils.ImageLoader;
+import com.readystatesoftware.viewbadger.BadgeView;
 
 
 public class ProduitAdapter extends ArrayAdapter<Produit>{
@@ -24,7 +26,7 @@ public class ProduitAdapter extends ArrayAdapter<Produit>{
 	ImageLoader imageLoader;
 	Context context;
 	List<Produit>produits=new ArrayList<Produit>();
-	
+	BadgeView badge2;
 
 	public ProduitAdapter(Context context, int layoutResourceId
 			, List<Produit> produits) {
@@ -60,6 +62,14 @@ public class ProduitAdapter extends ArrayAdapter<Produit>{
 		}
 		Produit p = produits.get(position);
 		System.out.println(p.getLibelle()+ " *** "+p.getImagePath());
+		if(position==1){
+			badge2 = new BadgeView(getContext(), holder.produitLibelle);
+	    	badge2.setText("New!");
+	    	badge2.setTextColor(Color.BLUE);
+	    	badge2.setBadgeBackgroundColor(Color.YELLOW);
+	    	badge2.setTextSize(12);
+	    	badge2.show();
+		}
 		imageLoader.DisplayImage(Products.ipServer+p.getImagePath(), holder.produitImg);
 		holder.produitLibelle.setText(p.getLibelle());
 		holder.produitPrix.setText(p.getPrix()+" DT");
