@@ -6,6 +6,15 @@ public class Produit {
 	double prix;
 	int quantite;
 	boolean dispo;
+	String description;
+	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	String imagePath;
 	int idC;
 	public int getId() {
@@ -56,24 +65,26 @@ public class Produit {
 		return super.equals(o);
 	}
 
+	
 	@Override
 	public String toString() {
 		return "Produit [id=" + id + ", libelle=" + libelle + ", prix=" + prix
 				+ ", quantite=" + quantite + ", dispo=" + dispo
-				+ ", imagePath=" + imagePath + ", idC=" + idC + "]";
+				+ ", description=" + description + ", imagePath=" + imagePath
+				+ ", idC=" + idC + "]";
 	}
-	public Produit(int id, String libelle, float prix, int quantite,
-			boolean dispo, String imagePath, int idC) {
+	public Produit(int id, String libelle, double prix, int quantite,
+			boolean dispo, String description, String imagePath, int idC) {
 		super();
 		this.id = id;
 		this.libelle = libelle;
 		this.prix = prix;
 		this.quantite = quantite;
 		this.dispo = dispo;
+		this.description = description;
 		this.imagePath = imagePath;
 		this.idC = idC;
 	}
-	
 	public Produit(){
 		
 	}

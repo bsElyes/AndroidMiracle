@@ -13,7 +13,11 @@
         <FrameLayout
         android:id="@+id/containerV2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" 
+        android:divider="#b5b5b5"
+        android:dividerHeight="1dp"
+        android:listSelector="@drawable/list_selector" />
+ 
 		
 		<fragment	    
 	    android:id="@+id/mapV2"

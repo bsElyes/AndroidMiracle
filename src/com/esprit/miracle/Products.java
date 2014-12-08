@@ -11,7 +11,6 @@ import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,13 +19,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.esprit.adapter.ProduitAdapter;
 import com.esprit.entities.Produit;
 import com.esprit.utils.HelperHttp;
-import com.readystatesoftware.viewbadger.BadgeView;
 
 
 public class Products extends Fragment {
@@ -34,9 +34,8 @@ public class Products extends Fragment {
 	GridView listProduitsGrid;
 	List<Produit> produits=new ArrayList<Produit>();
 	ProduitAdapter produitAdapter;
-	public static String  ipServer="http://192.168.1.3:80";
+	public static String  ipServer="http://192.168.1.2:80";
 	String urlCat="/scripts/produits.php?id=";
-	BadgeView badge2;
 	boolean done=false;
 	public Products(){
 		urlCat=ipServer+urlCat+""+1;
@@ -45,8 +44,35 @@ public class Products extends Fragment {
 	public Products(int i) {
 		urlCat=ipServer+urlCat+""+i;
 	}
-
-	@Override
+	
+//	public static List<Produit> getAllProduits(){
+//		List<Produit> list;
+//		String url="";
+//		String jsonProduit=HelperHttp.getJSONResponseFromURL(url);
+//		try {
+//			JSONArray array=new JSONArray(jsonProduit);
+//			
+//			for(int i = 0 ;i<array.length();i++){
+//				JSONObject j=array.getJSONObject(i);
+//				Produit p = new Produit();
+//				
+//				//p.setDispo(j.optBoolean("Disponible"));
+//				Log.d("Disponible",j.optBoolean("Disponible")+"");
+//				p.setImagePath(j.optString("ImagePath"));
+//				p.setLibelle(j.optString("LibelleProduit"));
+//				p.setPrix(j.optDouble("PrixProduit"));
+//				//p.setQuantite(j.optInt("QuantiteProduit"));
+//				
+//				list.add(p);
+//			}
+//		} catch (JSONException e) {
+//			// TODO Auto-generated catch block
+//			Log.d("JSON ",e.getMessage());
+//		}
+//		Log.d("parseJsonProduit ","Done");
+//		
+//		return list;
+//	}
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -60,13 +86,13 @@ public class Products extends Fragment {
 //			produits.add(p);
 //		}
 		
-		listProduitsList=(ListView ) v.findViewById(R.id.lv_produitsList);
+		listProduitsList=(ListView) v.findViewById(R.id.lv_produitsList);		
 		listProduitsGrid=(GridView)v.findViewById(R.id.lv_produitsGrid);
 		listProduitsList.setOnItemClickListener(new OnItemClickListener(
 				) {
 
 					@Override
-					public void onItemClick(AdapterView<?> arg0, View arg1,
+					public void onItemClick(AdapterView<?> arg0, View v,
 							int arg2, long arg3) {
 						Intent intent=new Intent(getActivity(),ProductDetails.class);
 						intent.putExtra("URLImage",produits.get(arg2).getImagePath());
@@ -74,12 +100,13 @@ public class Products extends Fragment {
 						intent.putExtra("Prix",produits.get(arg2).getPrix());
 						getActivity().startActivity(intent);
 						getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-						
 					}
 		});
 		return v;
 	}
 	
+	
+	 
 	@Override
 	public void onStart() {
 		
@@ -165,9 +192,9 @@ public class Products extends Fragment {
 			Log.d("onPostExecute ","start");
 
 			produitAdapter = new ProduitAdapter(getActivity(), R.layout.produit_detail_row, produits);
-
-				listProduitsGrid.setAdapter(produitAdapter);
+				
 				listProduitsList.setAdapter(produitAdapter);
+				listProduitsGrid.setAdapter(produitAdapter);
 
 			barProgressDialog.dismiss();
 			Log.d("onPostExecute ","Done");

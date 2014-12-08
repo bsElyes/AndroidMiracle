@@ -8,10 +8,13 @@ import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.esprit.entities.Produit;
 import com.esprit.miracle.Products;
@@ -40,46 +43,68 @@ public class ProduitAdapter extends ArrayAdapter<Produit>{
 		
 		
 	}
+	
+
+@Override
+public int getPosition(Produit item) {
+    return super.getPosition(item);
+}
+
+@Override
+public Produit getItem(int position) {
+    return produits.get(position);
+}
+
+@Override
+public int getCount() {
+    return produits.size();
+}
+
+@Override
+public long getItemId(int position) {
+    return super.getItemId(position);
+}
+
 
 	
 	@SuppressLint("SdCardPath")
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View row = convertView;
-		ProduitHolder holder = null;
-		if (row == null) {
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			row = inflater.inflate(layoutResourceId, parent, false);
 
-			holder = new ProduitHolder();
-			holder.produitImg = (ImageView) row.findViewById(R.id.img_produit);
-			holder.produitLibelle = (TextView) row.findViewById(R.id.tv_produit_name);
-			holder.produitPrix = (TextView) row.findViewById(R.id.tv_produit_prix);
-			row.setTag(holder);
-		} else {
-			holder = (ProduitHolder) row.getTag();
-		}
+			ImageView produitImg = (ImageView) row.findViewById(R.id.img_produit);
+			TextView produitLibelle = (TextView) row.findViewById(R.id.tv_produit_name);
+			TextView produitPrix = (TextView) row.findViewById(R.id.tv_produit_prix);
+			Button produitAdd=(Button) row.findViewById(R.id.btn_addCart);
+			
+			produitAdd.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					Toast.makeText(getContext(), "hola", 2000).show();
+					
+				}
+			});
+		
 		Produit p = produits.get(position);
 		System.out.println(p.getLibelle()+ " *** "+p.getImagePath());
-		if(position==1){
-			badge2 = new BadgeView(getContext(), holder.produitLibelle);
-	    	badge2.setText("New!");
-	    	badge2.setTextColor(Color.BLUE);
-	    	badge2.setBadgeBackgroundColor(Color.YELLOW);
-	    	badge2.setTextSize(12);
-	    	badge2.show();
-		}
-		imageLoader.DisplayImage(Products.ipServer+p.getImagePath(), holder.produitImg);
-		holder.produitLibelle.setText(p.getLibelle());
-		holder.produitPrix.setText(p.getPrix()+" DT");
+//		if(position==1){
+//			badge2 = new BadgeView(getContext(), holder.produitLibelle);
+//	    	badge2.setText("New!");
+//	    	badge2.setTextColor(Color.BLUE);
+//	    	badge2.setBadgeBackgroundColor(Color.YELLOW);
+//	    	badge2.setTextSize(12);
+//	    	badge2.show();
+//		}
+		imageLoader.DisplayImage(Products.ipServer+p.getImagePath(), produitImg);
+		produitLibelle.setText(p.getLibelle());
+		produitPrix.setText(p.getPrix()+" DT");
 		
 		return row;
 	}
 
-	public class ProduitHolder {
-		ImageView produitImg;
-		TextView produitLibelle;
-		TextView produitPrix;
-	}
+	
 }
