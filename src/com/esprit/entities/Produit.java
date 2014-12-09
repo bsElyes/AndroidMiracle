@@ -1,13 +1,32 @@
 package com.esprit.entities;
 
+import java.util.Date;
+
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
+@DatabaseTable(tableName="Produits")
 public class Produit {
+	@DatabaseField(id=true)
 	int id;
+	@DatabaseField
 	String libelle;
+	@DatabaseField
 	double prix;
+	@DatabaseField
 	int quantite;
+	@DatabaseField
 	boolean dispo;
+	@DatabaseField
 	String description;
+	@DatabaseField
+	Date dateAjout;
+	@DatabaseField
+	String imagePath;
+	@DatabaseField
+	int idC;
 	
+
 	public String getDescription() {
 		return description;
 	}
@@ -15,8 +34,6 @@ public class Produit {
 		this.description = description;
 	}
 
-	String imagePath;
-	int idC;
 	public int getId() {
 		return id;
 	}
@@ -66,15 +83,18 @@ public class Produit {
 	}
 
 	
+	
 	@Override
 	public String toString() {
 		return "Produit [id=" + id + ", libelle=" + libelle + ", prix=" + prix
 				+ ", quantite=" + quantite + ", dispo=" + dispo
-				+ ", description=" + description + ", imagePath=" + imagePath
-				+ ", idC=" + idC + "]";
+				+ ", description=" + description + ", dateAjout=" + dateAjout
+				+ ", imagePath=" + imagePath + ", idC=" + idC + ", isNew="
+				+  "]";
 	}
 	public Produit(int id, String libelle, double prix, int quantite,
-			boolean dispo, String description, String imagePath, int idC) {
+			boolean dispo, String description, Date dateAjout,
+			String imagePath, int idC) {
 		super();
 		this.id = id;
 		this.libelle = libelle;
@@ -82,9 +102,17 @@ public class Produit {
 		this.quantite = quantite;
 		this.dispo = dispo;
 		this.description = description;
+		this.dateAjout = dateAjout;
 		this.imagePath = imagePath;
 		this.idC = idC;
 	}
+	public Date getDateAjout() {
+		return dateAjout;
+	}
+	public void setDateAjout(Date dateAjout) {
+		this.dateAjout = dateAjout;
+	}
+	
 	public Produit(){
 		
 	}

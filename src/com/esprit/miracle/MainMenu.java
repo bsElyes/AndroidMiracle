@@ -1,6 +1,7 @@
 package com.esprit.miracle;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.w3c.dom.Document;
 
@@ -25,7 +26,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.esprit.entities.Produit;
 import com.esprit.fragments.AboutFragment;
+import com.esprit.fragments.CartFragment;
+import com.esprit.utils.DatabaseHelper;
 import com.esprit.utils.GMapV2Direction;
 import com.esprit.utils.GPSTracker;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -36,7 +40,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.ikimuhendis.ldrawer.ActionBarDrawerToggle;
 import com.ikimuhendis.ldrawer.DrawerArrowDrawable;
-import com.joanzapata.android.iconify.Iconify;
+import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.j256.ormlite.dao.RuntimeExceptionDao;
 
 
 
@@ -49,7 +54,10 @@ public class MainMenu extends Activity {
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerArrowDrawable drawerArrow;
     private boolean drawerArrowColor;
-
+    
+    //DB
+	DatabaseHelper dbHelper;
+	RuntimeExceptionDao<Produit, Integer> prodDao;
     //MAP
     private GoogleMap mMap;
     private MapFragment mMapFragment;
@@ -59,6 +67,8 @@ public class MainMenu extends Activity {
     LatLng fromPosition =new LatLng(36.8339127,10.1789832);
 	LatLng toPosition = new LatLng(36.8498327,10.2203717);
 	
+	//List Produit Cart
+	List<Produit>list = null;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,12 +85,16 @@ public class MainMenu extends Activity {
         mMap = mMapFragment.getMap();     
 		mMapFragment.getView().setVisibility(View.INVISIBLE);
 		MapDrawer(mMap);
-        drawerArrow = new DrawerArrowDrawable(this) {
+		dbHelper=OpenHelperManager.getHelper(this, DatabaseHelper.class);
+		prodDao=dbHelper.getProdRuntimeExceptionDao();
+		
+		drawerArrow = new DrawerArrowDrawable(this) {
             @Override
             public boolean isLayoutRtl() {
                 return false;
             }
         };
+        
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
             drawerArrow, R.string.drawer_open,
             R.string.drawer_close) {
@@ -173,62 +187,6 @@ public class MainMenu extends Activity {
         mMapFragment.getView().setVisibility(View.INVISIBLE);
        }
 	});
-//    }  	
-//        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//        
-//        
-//       
-//        	 FragmentManager fm= getFragmentManager();
-//             Fragment fragment =null;
-//			@Override
-//            public void onItemClick(AdapterView<?> parent, View view,
-//                                    int position, long id) {
-//				Intent intent;
-//                switch (position) {
-//                    case 0:
-//	                      	//fm.beginTransaction().hide(FragmentMap).commit();
-//                        break;
-//                    case 1:
-//                    	Toast t=Toast.makeText(getApplicationContext(), "Veuillez Choisir une Categorie", 2000);
-//                    	t.show();
-//                        break;
-//                    case 2:
-//                    	fragment = new Products(1);
-//                        break;
-//                    case 3:
-//                    	fragment = new Products(2);
-//                        break;
-//                    case 4:
-//                    	fragment = new Products(3);
-//                        break;
-//                    case 5:
-//                    	fragment = new Products(4);
-//                        break;
-//                    case 6:
-//                    	fragment = new Products(5);
-//                        break;
-//                    case 7:
-//                    	fragment = new Products(6);
-//                        break;
-//                    case 8:
-//                    	fragment = new Products(7);
-//                        break;
-//                    case 9:
-//                    	fragment = new Products(8);
-//                        break;
-//                    case 10:
-//                    	fragment = new AboutFragment();
-//                        break;
-//                }
-//                fm.beginTransaction()
-//    	        .replace(R.id.containerV2, fragment)
-//    	        .commit();
-//                mDrawerLayout.closeDrawer(mDrawerList);
-//                
-//                mMapFragment.getView().setVisibility(View.INVISIBLE);
-//                
-//            }
-//        });
     }
 
    
@@ -249,9 +207,7 @@ public class MainMenu extends Activity {
         }
         
         if(item.getItemId()==R.id.action_map){
-        	if(showMap){
-        		
-                           
+        	if(showMap){                         
         		mMapFragment.getView().setVisibility(View.VISIBLE);
         		showMap=false;
         	}else{
@@ -259,6 +215,14 @@ public class MainMenu extends Activity {
         		showMap=true;
         	}
         	
+        }
+        if(item.getItemId()==R.id.action_shop){
+        	FragmentManager fm= getFragmentManager();
+    		list=prodDao.queryForAll();
+            Fragment fragment =new CartFragment(list);
+        	fm.beginTransaction()
+            .replace(R.id.containerV2, fragment)
+            .commit();
         }
         return super.onOptionsItemSelected(item);
     }

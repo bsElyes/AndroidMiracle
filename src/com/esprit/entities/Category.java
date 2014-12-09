@@ -1,8 +1,11 @@
 package com.esprit.entities;
 
+import com.j256.ormlite.field.DatabaseField;
+
 public class Category {
-	
+	@DatabaseField(id=true)
 	private int id;
+	@DatabaseField
 	private String Libelle;
 	public int getId() {
 		return id;

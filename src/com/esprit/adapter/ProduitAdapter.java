@@ -5,7 +5,7 @@ import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,7 +19,10 @@ import android.widget.Toast;
 import com.esprit.entities.Produit;
 import com.esprit.miracle.Products;
 import com.esprit.miracle.R;
+import com.esprit.utils.DatabaseHelper;
 import com.esprit.utils.ImageLoader;
+import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.readystatesoftware.viewbadger.BadgeView;
 
 
@@ -30,21 +33,32 @@ public class ProduitAdapter extends ArrayAdapter<Produit>{
 	Context context;
 	List<Produit>produits=new ArrayList<Produit>();
 	BadgeView badge2;
-
+	DatabaseHelper dbHelper;
+	RuntimeExceptionDao<Produit, Integer> prodDao;
 	public ProduitAdapter(Context context, int layoutResourceId
 			, List<Produit> produits) {
 		super(context, layoutResourceId, produits);
 		
-
+		
 		this.layoutResourceId = layoutResourceId;
 		this.context = context;
 		this.produits = produits;
 		imageLoader = new ImageLoader(context.getApplicationContext());
 		
-		
 	}
 	
-
+	void addProduct(Produit p){
+			if(prodDao.queryForId(p.getId()) == null){
+			prodDao.create(p);
+			Log.d("Product Added",p.toString());
+			}else{
+				Toast.makeText(getContext(), "Product Already added !" , 2000);
+			}
+			List<Produit> listProduits = prodDao.queryForAll();
+			Log.d("Shopping Cart List Produits ", listProduits.toString());
+			OpenHelperManager.releaseHelper();
+		
+	}
 @Override
 public int getPosition(Produit item) {
     return super.getPosition(item);
@@ -74,23 +88,34 @@ public long getItemId(int position) {
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			row = inflater.inflate(layoutResourceId, parent, false);
-
+			final int pos=position;
 			ImageView produitImg = (ImageView) row.findViewById(R.id.img_produit);
 			TextView produitLibelle = (TextView) row.findViewById(R.id.tv_produit_name);
 			TextView produitPrix = (TextView) row.findViewById(R.id.tv_produit_prix);
+			TextView produitDesc=(TextView)row.findViewById(R.id.tv_description_produit);
 			Button produitAdd=(Button) row.findViewById(R.id.btn_addCart);
 			
 			produitAdd.setOnClickListener(new OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
-					Toast.makeText(getContext(), "hola", 2000).show();
-					
+					try{
+						dbHelper=OpenHelperManager.getHelper(getContext(), DatabaseHelper.class);
+						prodDao = dbHelper.getProdRuntimeExceptionDao();
+						
+
+					prodDao.create(produits.get(pos));
+					Toast.makeText(getContext(),produits.get(pos).getLibelle()+"Add To Cart", 2000).show();
+					}catch(Exception e){
+						Toast.makeText(getContext(),"Product Already Added !", 2000).show();
+						List<Produit>listProd=prodDao.queryForAll();
+						Log.d("erreur","ERROR TO ADD"+listProd.toString());
+					}
 				}
 			});
 		
 		Produit p = produits.get(position);
-		System.out.println(p.getLibelle()+ " *** "+p.getImagePath());
+		System.out.println(p.getId()+"  "+p.getLibelle()+ " *** "+p.getImagePath());
 //		if(position==1){
 //			badge2 = new BadgeView(getContext(), holder.produitLibelle);
 //	    	badge2.setText("New!");
@@ -102,7 +127,7 @@ public long getItemId(int position) {
 		imageLoader.DisplayImage(Products.ipServer+p.getImagePath(), produitImg);
 		produitLibelle.setText(p.getLibelle());
 		produitPrix.setText(p.getPrix()+" DT");
-		
+		produitDesc.setText(p.getDescription());
 		return row;
 	}
 

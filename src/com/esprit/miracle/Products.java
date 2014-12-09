@@ -1,6 +1,7 @@
 package com.esprit.miracle;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -19,14 +20,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.esprit.adapter.ProduitAdapter;
 import com.esprit.entities.Produit;
+import com.esprit.utils.DatabaseHelper;
 import com.esprit.utils.HelperHttp;
+import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.j256.ormlite.dao.RuntimeExceptionDao;
 
 
 public class Products extends Fragment {
@@ -41,6 +43,7 @@ public class Products extends Fragment {
 		urlCat=ipServer+urlCat+""+1;
 		
 	}
+	
 	public Products(int i) {
 		urlCat=ipServer+urlCat+""+i;
 	}
@@ -142,13 +145,16 @@ public class Products extends Fragment {
 			for(int i = 0 ;i<array.length();i++){
 				JSONObject j=array.getJSONObject(i);
 				Produit p = new Produit();
-				
-				//p.setDispo(j.optBoolean("Disponible"));
-				Log.d("Disponible",j.optBoolean("Disponible")+"");
+				p.setId(j.optInt("idProduit"));
+				p.setDispo(j.optBoolean("Disponible"));
 				p.setImagePath(j.optString("ImagePath"));
 				p.setLibelle(j.optString("LibelleProduit"));
 				p.setPrix(j.optDouble("PrixProduit"));
-				//p.setQuantite(j.optInt("QuantiteProduit"));
+				p.setQuantite(j.optInt("QuantiteProduit"));
+				p.setDescription(j.optString("Description"));
+				p.setIdC(j.optInt("Categorie"));
+				//p.setNew(j.optInt("isNew"));
+				p.setDateAjout(new Date(System.currentTimeMillis()));
 				
 				list.add(p);
 			}
