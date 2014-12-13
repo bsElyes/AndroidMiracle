@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.annotation.SuppressLint;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.esprit.entities.Produit;
+import com.esprit.fragments.CartFragment;
 import com.esprit.miracle.Products;
 import com.esprit.miracle.R;
 import com.esprit.utils.DatabaseHelper;
@@ -93,13 +96,14 @@ public long getItemId(int position) {
 						dbHelper=OpenHelperManager.getHelper(getContext(), DatabaseHelper.class);
 						prodDao = dbHelper.getProdRuntimeExceptionDao();
 						Dialog dialog = new Dialog(getContext(),"Delete From Cart", "Do You want really Delete The Product "+produits.get(pos).getLibelle());
-						dialog.setOnAcceptButtonClickListener( new OnClickListener() {
-							
+						dialog.setOnAcceptButtonClickListener( new OnClickListener() {							
 							@Override
 							public void onClick(View v) {
 								prodDao.deleteById(produits.get(pos).getId());
 								Toast.makeText(getContext(),produits.get(pos).getLibelle()+" is Deleted Succesfully", 2000).show();
 								notifyDataSetChanged();
+							
+							
 							}
 						});
 						// Set cancel click listenner

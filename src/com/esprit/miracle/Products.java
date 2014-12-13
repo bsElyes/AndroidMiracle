@@ -40,8 +40,7 @@ public class Products extends Fragment {
 	String urlCat="/scripts/produits.php?id=";
 	boolean done=false;
 	public Products(){
-		urlCat=ipServer+urlCat+""+1;
-		
+		urlCat=ipServer+urlCat+""+1;		
 	}
 	
 	public Products(int i) {

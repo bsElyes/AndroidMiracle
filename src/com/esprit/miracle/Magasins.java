@@ -106,4 +106,3 @@ public class Magasins extends Activity {
 	
 }
 
-

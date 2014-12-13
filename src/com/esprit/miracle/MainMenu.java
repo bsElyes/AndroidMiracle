@@ -64,7 +64,7 @@ public class MainMenu extends Activity {
     private GPSTracker mGPS ;
     public GMapV2Direction md;
     private static boolean showMap=true;
-    LatLng fromPosition =new LatLng(36.8339127,10.1789832);
+    LatLng fromPosition =null;
 	LatLng toPosition = new LatLng(36.8498327,10.2203717);
 	
 	//List Produit Cart
@@ -145,6 +145,7 @@ public class MainMenu extends Activity {
           switch (position) {
               case 0:
                     	//fm.beginTransaction().hide(FragmentMap).commit();
+            	  Toast.makeText(getApplicationContext(), "aegaegae gaeg aeg", 2000).show();
                   break;
               case 1:
               	Toast t=Toast.makeText(getApplicationContext(), "Veuillez Choisir une Categorie", 2000);
@@ -175,6 +176,8 @@ public class MainMenu extends Activity {
               	fragment = new Products(8);
                   break;
               case 10:
+            	  
+
               	fragment = new AboutFragment();
                   break;
 			
@@ -217,6 +220,8 @@ public class MainMenu extends Activity {
         	
         }
         if(item.getItemId()==R.id.action_shop){
+    		mMapFragment.getView().setVisibility(View.INVISIBLE);
+
         	FragmentManager fm= getFragmentManager();
     		list=prodDao.queryForAll();
             Fragment fragment =new CartFragment(list);
@@ -250,7 +255,9 @@ public class MainMenu extends Activity {
     	 md = new GMapV2Direction();
  		
  		mMap.setMyLocationEnabled(true);
+ 		LatLng fromPosition = new LatLng(36.8339127,10.1789832);		
 
+ 		//fromPosition= new LatLng(mGPS.getLatitude(),mGPS.getLongitude());
  		LatLng coordinates = new LatLng(36.8339127,10.1789832);		
  		mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 16));
  		

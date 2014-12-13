@@ -37,4 +37,6 @@
     <string name="drawer_close">drawer_close</string>
     <string name="action_map">Magasins Map</string>
     <string name="action_shop">Cart</string>
+    <string name="facebook_app_id">306612572867941</string>
+    	
 </resources>
