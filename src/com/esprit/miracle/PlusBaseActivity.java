@@ -23,22 +23,22 @@ public abstract class PlusBaseActivity extends Activity implements
 
 	// A magic number we will use to know that our sign-in error resolution
 	// activity has completed
-	private static final int OUR_REQUEST_CODE = 49404;
+	public static final int OUR_REQUEST_CODE = 49404;
 
 	// A flag to stop multiple dialogues appearing for the user
-	private boolean mAutoResolveOnFail;
+	public static boolean mAutoResolveOnFail;
 
 	// A flag to track when a connection is already in progress
-	public boolean mPlusClientIsConnecting = false;
+	public static boolean mPlusClientIsConnecting = false;
 
 	// This is the helper object that connects to Google Play Services.
-	private PlusClient mPlusClient;
+	public static PlusClient mPlusClient;
 
 	// The saved result from {@link #onConnectionFailed(ConnectionResult)}. If a
 	// connection
 	// attempt has been made, this is non-null.
 	// If this IS null, then the connect method is still running.
-	private ConnectionResult mConnectionResult;
+	public static ConnectionResult mConnectionResult;
 
 	/**
 	 * Called when the {@link PlusClient} revokes access to this app.
@@ -82,6 +82,7 @@ public abstract class PlusBaseActivity extends Activity implements
 	 * Try to sign in the user.
 	 */
 	public void signIn() {
+		
 		if (!mPlusClient.isConnected()) {
 			// Show the dialog as we are now signing in.
 			setProgressBarVisible(true);

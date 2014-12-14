@@ -76,6 +76,11 @@
             android:label="@string/title_activity_login"
             android:windowSoftInputMode="adjustResize|stateHidden" >
         </activity>
+        <activity
+            android:name=".SignInActivity"
+            android:label="AEAEGAEG">
+        </activity>
+        
         <meta-data 
             android:value="@string/facebook_app_id" 
             android:name="com.facebook.sdk.ApplicationId"

@@ -5,9 +5,11 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 
 import android.app.LoaderManager.LoaderCallbacks;
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.CursorLoader;
 import android.content.Intent;
+import android.content.IntentSender.SendIntentException;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
@@ -17,6 +19,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -63,7 +66,8 @@ public class LoginActivity extends PlusBaseActivity implements
 	private SignInButton mPlusSignInButton;
 	private View mSignOutButtons;
 	private View mLoginFormView;
-
+	private ProgressDialog mConnectionProgressDialog;
+	public static int REQUEST_CODE_RESOLVE_ERR=49404;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -76,6 +80,14 @@ public class LoginActivity extends PlusBaseActivity implements
 			mPlusSignInButton.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View view) {
+					if (view.getId() == R.id.sign_in_button && !mPlusClient.isConnected()) {
+				        if (mConnectionResult == null) {
+				            mConnectionProgressDialog.show();
+				        } else {
+				            Log.d("aaa","aaaa");
+            // mConnectionResult.startResolutionForResult(this, REQUEST_CODE_RESOLVE_ERR);
+				        }
+				    }
 					signIn();
 				}
 			});
