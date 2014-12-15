@@ -1,6 +1,8 @@
 package com.esprit.miracle;
 
 
+import com.esprit.fragments.ProductsFragment;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
@@ -40,25 +42,25 @@ public class Catalogue extends Activity implements
 	    FragmentManager fragmentManager = getFragmentManager();
 	    switch(position) {
 	        case 0:
-	            fragment = new Products(1);
+	            fragment = new ProductsFragment(1);
 	            break;
 	        case 1:
-	        	fragment = new Products(2);
+	        	fragment = new ProductsFragment(2);
 	            break;
 	        case 2:
-	        	fragment = new Products(3);
+	        	fragment = new ProductsFragment(3);
 	            break;
 	        case 3:
-	        	fragment = new Products(4);
+	        	fragment = new ProductsFragment(4);
 	            break;
 	        case 4:
-	        	fragment = new Products(5);
+	        	fragment = new ProductsFragment(5);
 	            break;
 	        case 5:
-	        	fragment = new Products(6);
+	        	fragment = new ProductsFragment(6);
 	            break;
 	        case 6:
-	        	fragment = new Products(7);
+	        	fragment = new ProductsFragment(7);
 	            break;
 	    }
 	    fragmentManager.beginTransaction()

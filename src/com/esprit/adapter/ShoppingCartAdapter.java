@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 import com.esprit.entities.Produit;
 import com.esprit.fragments.CartFragment;
-import com.esprit.miracle.Products;
+import com.esprit.fragments.ProductsFragment;
 import com.esprit.miracle.R;
 import com.esprit.utils.DatabaseHelper;
 import com.esprit.utils.ImageLoader;
@@ -86,9 +86,9 @@ public long getItemId(int position) {
 			ImageView produitImg = (ImageView) row.findViewById(R.id.img_produit_s);
 			TextView produitLibelle = (TextView) row.findViewById(R.id.tv_produit_name_s);
 			TextView produitPrix = (TextView) row.findViewById(R.id.tv_produit_prix_s);
-			Button produitAdd=(Button) row.findViewById(R.id.btn_delete);
+			Button produitDel=(Button) row.findViewById(R.id.btn_delete);
 			
-			produitAdd.setOnClickListener(new OnClickListener() {
+			produitDel.setOnClickListener(new OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
@@ -134,7 +134,7 @@ public long getItemId(int position) {
 //	    	badge2.setTextSize(12);
 //	    	badge2.show();
 //		}
-		imageLoader.DisplayImage(Products.ipServer+p.getImagePath(), produitImg);
+		imageLoader.DisplayImage(ProductsFragment.ipServer+p.getImagePath(), produitImg);
 		produitLibelle.setText(p.getLibelle());
 		produitPrix.setText(p.getPrix()+" DT");
 		

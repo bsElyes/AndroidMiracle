@@ -1351,7 +1351,7 @@ public class AndroidBarcodeView extends View
                 Kanji characters
         */
                        //BIZCARD:N:Kelly;X:Goto;T:Design Ethnographer;C:gotomedia LLC;A:2169 Folsom Street M302;B:4158647007;F:4158647004;M:4159907005;E:kelly@gotomedia.com;;
-        barcode.setData("BIZCARD:N:Kelly;X:Goto;T:Design Ethnographer;C:gotomedia LLC;A:2169 Folsom Street M302;B:4158647007;F:4158647004;M:4159907005;E:kelly@gotomedia.com;;");
+        barcode.setData("HELLO");
         barcode.setDataMode(QRCode.M_AUTO);
         barcode.setVersion(1);
         barcode.setEcl(QRCode.ECL_L);
@@ -1371,14 +1371,14 @@ public class AndroidBarcodeView extends View
         // unit of measure for X, Y, LeftMargin, RightMargin, TopMargin, BottomMargin
         barcode.setUom(IBarcode.UOM_PIXEL);
         // barcode module width in pixel
-        barcode.setX(3f);
+        barcode.setX(10f);
 
-        barcode.setLeftMargin(50f);
-        barcode.setRightMargin(50f);
-        barcode.setTopMargin(50f);
-        barcode.setBottomMargin(50f);
+        barcode.setLeftMargin(200f);
+        barcode.setRightMargin(200f);
+        barcode.setTopMargin(200f);
+        barcode.setBottomMargin(200f);
         // barcode image resolution in dpi
-        barcode.setResolution(72);
+        barcode.setResolution(256);
         
         // barcode bar color and background color in Android device
         barcode.setForeColor(AndroidColor.black);

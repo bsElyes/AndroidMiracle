@@ -1,4 +1,4 @@
-package com.esprit.miracle;
+package com.esprit.fragments;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,13 +25,18 @@ import android.widget.ListView;
 
 import com.esprit.adapter.ProduitAdapter;
 import com.esprit.entities.Produit;
+import com.esprit.miracle.ProductDetails;
+import com.esprit.miracle.R;
+import com.esprit.miracle.R.anim;
+import com.esprit.miracle.R.id;
+import com.esprit.miracle.R.layout;
 import com.esprit.utils.DatabaseHelper;
 import com.esprit.utils.HelperHttp;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 
 
-public class Products extends Fragment {
+public class ProductsFragment extends Fragment {
 	ListView listProduitsList;
 	GridView listProduitsGrid;
 	List<Produit> produits=new ArrayList<Produit>();
@@ -39,11 +44,11 @@ public class Products extends Fragment {
 	public static String  ipServer="http://172.16.18.152:80";
 	String urlCat="/scripts/produits.php?id=";
 	boolean done=false;
-	public Products(){
+	public ProductsFragment(){
 		urlCat=ipServer+urlCat+""+1;		
 	}
 	
-	public Products(int i) {
+	public ProductsFragment(int i) {
 		urlCat=ipServer+urlCat+""+i;
 	}
 	
@@ -79,20 +84,11 @@ public class Products extends Fragment {
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View v = inflater.inflate(R.layout.fragment_produits, container , false);
-		
-//		for(int i =0 ; i <5 ; i++){
-//			Produit p=new Produit();
-//			p.setLibelle(",najnnkkj : "+i);
-//			p.setPrix(550);
-//			p.setImagePath("5544554 : "+i);
-//			produits.add(p);
-//		}
-		
+				
 		listProduitsList=(ListView) v.findViewById(R.id.lv_produitsList);		
 		listProduitsGrid=(GridView)v.findViewById(R.id.lv_produitsGrid);
 		listProduitsList.setOnItemClickListener(new OnItemClickListener(
 				) {
-
 					@Override
 					public void onItemClick(AdapterView<?> arg0, View v,
 							int arg2, long arg3) {
@@ -107,11 +103,8 @@ public class Products extends Fragment {
 		return v;
 	}
 	
-	
-	 
 	@Override
 	public void onStart() {
-		
 		onConfigurationChanged(getResources().getConfiguration());
 		if (!done) {
 			new AsycGetProducts().execute();

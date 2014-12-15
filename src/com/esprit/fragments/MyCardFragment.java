@@ -10,6 +10,7 @@ import com.esprit.utils.AndroidBarcodeView;
 
 public class MyCardFragment extends Fragment {
 
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {

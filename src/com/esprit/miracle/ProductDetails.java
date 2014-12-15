@@ -2,6 +2,7 @@ package com.esprit.miracle;
 
 
 
+import com.esprit.fragments.ProductsFragment;
 import com.esprit.utils.ImageLoader;
 
 import android.app.Activity;
@@ -25,7 +26,7 @@ public class ProductDetails extends Activity {
 		
 		
 		ImageView imgP=(ImageView) findViewById(R.id.imageView_detail_P);
-		imgLoader.DisplayImage(Products.ipServer+ImgP, imgP);
+		imgLoader.DisplayImage(ProductsFragment.ipServer+ImgP, imgP);
 	}
 
 	@Override

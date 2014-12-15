@@ -5,6 +5,11 @@ import java.util.List;
 
 import org.w3c.dom.Document;
 
+import uk.me.lewisdeane.lnavigationdrawer.NavigationAdapter;
+import uk.me.lewisdeane.lnavigationdrawer.NavigationItem;
+import uk.me.lewisdeane.lnavigationdrawer.NavigationListView;
+import uk.me.lewisdeane.lnavigationdrawer.NavigationListView.NavigationItemClickListener;
+
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -29,6 +34,8 @@ import android.widget.Toast;
 import com.esprit.entities.Produit;
 import com.esprit.fragments.AboutFragment;
 import com.esprit.fragments.CartFragment;
+import com.esprit.fragments.MyCardFragment;
+import com.esprit.fragments.ProductsFragment;
 import com.esprit.utils.DatabaseHelper;
 import com.esprit.utils.GMapV2Direction;
 import com.esprit.utils.GPSTracker;
@@ -50,7 +57,7 @@ public class MainMenu extends Activity {
 
 
     private DrawerLayout mDrawerLayout;
-    private ListView mDrawerList;
+    private NavigationListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerArrowDrawable drawerArrow;
     private boolean drawerArrowColor;
@@ -79,7 +86,7 @@ public class MainMenu extends Activity {
         ab.setHomeButtonEnabled(true);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.navdrawer);
+        mDrawerList = (NavigationListView) findViewById(R.id.navdrawer);
         
         mMapFragment = ((MapFragment)getFragmentManager().findFragmentById(R.id.mapV2));
         mMap = mMapFragment.getMap();     
@@ -112,84 +119,158 @@ public class MainMenu extends Activity {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
         
-//        mDrawerList.addNavigationItem("Acceuil", R.drawable.prod, true);
-//        mDrawerList.addNavigationItem("Catalogue", R.drawable.prod, false);
-//        mDrawerList.addNavigationItem("Acceuil",R.drawable.prod , false);
-//        mDrawerList.addNavigationItem("Acceuil", R.drawable.prod, false);
-        
-        String[] values = new String[]{
-            "Acceuil",
-            "Catalogue",
-            "   Soins",
-            "   Maquillage",
-            "   Parfums Homme",
-            "   Parfums Femme",
-            "   Parfums Mixte",
-            "   Coffrets pour Homme",
-            "   Coffrets pour Femme",
-            "About"
-        };
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-            android.R.layout.simple_list_item_1, android.R.id.text1, values);
-        
-        
-        mDrawerList.setAdapter(adapter);
-       mDrawerList.setOnItemClickListener(new OnItemClickListener() {
 
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
-				long id) {
-			Intent intent;
-       	 FragmentManager fm= getFragmentManager();
-          Fragment fragment =null;
-          switch (position) {
-              case 0:
-                    	//fm.beginTransaction().hide(FragmentMap).commit();
-            	  Toast.makeText(getApplicationContext(), "aegaegae gaeg aeg", 2000).show();
-                  break;
-              case 1:
-              	Toast t=Toast.makeText(getApplicationContext(), "Veuillez Choisir une Categorie", 2000);
-              	t.show();
-                  break;
-              case 2:
-              	fragment = new Products(1);
-                  break;
-              case 3:
-              	fragment = new Products(2);
-                  break;
-              case 4:
-              	fragment = new Products(3);
-                  break;
-              case 5:
-              	fragment = new Products(4);
-                  break;
-              case 6:
-              	fragment = new Products(5);
-                  break;
-              case 7:
-              	fragment = new Products(6);
-                  break;
-              case 8:
-              	fragment = new Products(7);
-                  break;
-              case 9:
-              	fragment = new Products(8);
-                  break;
-              case 10:
-            	  
+//        String[] values = new String[]{
+//            "Acceuil",
+//            "Catalogue",
+//            "   Soins",
+//            "   Maquillage",
+//            "   Parfums Homme",
+//            "   Parfums Femme",
+//            "   Parfums Mixte",
+//            "   Coffrets pour Homme",
+//            "   Coffrets pour Femme",
+//            "About"
+//        };
+        
+        
+        ArrayList<NavigationItem> listItem =new ArrayList<NavigationItem>();
+        mDrawerList.addNavigationItem(new NavigationItem("Acceuil",R.drawable.dr_acceuil));
+        mDrawerList.addNavigationItem(new NavigationItem("Categorie", R.drawable.dr_shop));
+        mDrawerList.addNavigationItem(new NavigationItem("Soins",R.drawable.dr_1));
+        mDrawerList.addNavigationItem(new NavigationItem("Maquillage",R.drawable.dr_2));
+        mDrawerList.addNavigationItem(new NavigationItem("Parfums Homme",R.drawable.dr_3));
+        mDrawerList.addNavigationItem(new NavigationItem("Parfums Femme",R.drawable.dr_4));
+        mDrawerList.addNavigationItem(new NavigationItem("Parfums Mixte",R.drawable.dr_5));
+        mDrawerList.addNavigationItem(new NavigationItem("Coffrets pour Homme",R.drawable.dr_6));
+        mDrawerList.addNavigationItem(new NavigationItem("Coffrets pour Femme",R.drawable.dr_7));
+        mDrawerList.addNavigationItem(new NavigationItem("Ma Carte", R.drawable.dr_fidelity));
+        mDrawerList.addNavigationItem(new NavigationItem("About", R.drawable.dr_about));
 
-              	fragment = new AboutFragment();
-                  break;
+
+        mDrawerList.setNavigationItemClickListener(new NavigationItemClickListener() {
 			
-		}
-        fm.beginTransaction()
-        .replace(R.id.containerV2, fragment)
-        .commit();
-        mDrawerLayout.closeDrawer(mDrawerList);
+			@Override
+			public void onNavigationItemSelected(String item,
+					ArrayList<NavigationItem> items, int position) {
+			Intent intent;
+	       	FragmentManager fm= getFragmentManager();
+	        Fragment fragment =null;
+
+				switch (position) {
+						case 0:
+							Toast.makeText(getApplicationContext(), "Acceuil",
+									5000).show();
+							break;
+						case 1:
+							Toast.makeText(getApplicationContext(),
+									"Categorie", 5000).show();
+							break;
+
+						case 2:
+							fragment = new ProductsFragment(1);
+							break;
+						case 3:
+							fragment = new ProductsFragment(2);
+							break;
+						case 4:
+							fragment = new ProductsFragment(3);
+							break;
+						case 5:
+							fragment = new ProductsFragment(4);
+							break;
+						case 6:
+							fragment = new ProductsFragment(5);
+							break;
+						case 7:
+							fragment = new ProductsFragment(6);
+							break;
+						case 8:
+							fragment = new ProductsFragment(7);
+							break;
+						case 9:
+							fragment = new ProductsFragment(8);
+							break;
+						case 10:
+							fragment = new MyCardFragment();
+							Toast.makeText(getApplicationContext(), "MyCard",
+									5000).show();
+							break;
+
+						}
+				if(fragment!=null){
+				 	fm.beginTransaction()
+			        .replace(R.id.containerV2, fragment)
+			        .commit();
+			        mDrawerLayout.closeDrawer(mDrawerList);			        
+			        mMapFragment.getView().setVisibility(View.INVISIBLE);
+				}
+			}
+			
+		});
+//        listItem.add(new NavigationItem("hello"));
+//        NavigationAdapter adapter = new NavigationAdapter(this,R.id.navdrawer,listItem);
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+//            android.R.layout.simple_list_item_1, android.R.id.text1, values);
         
-        mMapFragment.getView().setVisibility(View.INVISIBLE);
-       }
-	});
+        
+//       mDrawerList.setAdapter(adapter);
+//       mDrawerList.setOnItemClickListener(new OnItemClickListener() {
+
+//		@Override
+//		public void onItemClick(AdapterView<?> parent, View view, int position,
+//				long id) {
+//			Intent intent;
+//       	 FragmentManager fm= getFragmentManager();
+//          Fragment fragment =null;
+//          switch (position) {
+//              case 0:
+//                    	//fm.beginTransaction().hide(FragmentMap).commit();
+//            	  Toast.makeText(getApplicationContext(), "aegaegae gaeg aeg", 2000).show();
+//                  break;
+//              case 1:
+//              	Toast t=Toast.makeText(getApplicationContext(), "Veuillez Choisir une Categorie", 2000);
+//              	t.show();
+//                  break;
+//              case 2:
+//              	fragment = new Products(1);
+//                  break;
+//              case 3:
+//              	fragment = new Products(2);
+//                  break;
+//              case 4:
+//              	fragment = new Products(3);
+//                  break;
+//              case 5:
+//              	fragment = new Products(4);
+//                  break;
+//              case 6:
+//              	fragment = new Products(5);
+//                  break;
+//              case 7:
+//              	fragment = new Products(6);
+//                  break;
+//              case 8:
+//              	fragment = new Products(7);
+//                  break;
+//              case 9:
+//              	fragment = new Products(8);
+//                  break;
+//              case 10:
+//            	  
+//
+//              	fragment = new AboutFragment();
+//                  break;
+//			
+//		}
+//        fm.beginTransaction()
+//        .replace(R.id.containerV2, fragment)
+//        .commit();
+//        mDrawerLayout.closeDrawer(mDrawerList);
+//        
+//        mMapFragment.getView().setVisibility(View.INVISIBLE);
+//       }
+//	});
     }
 
    

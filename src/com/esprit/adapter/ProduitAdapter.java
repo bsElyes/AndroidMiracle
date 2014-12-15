@@ -17,7 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.esprit.entities.Produit;
-import com.esprit.miracle.Products;
+import com.esprit.fragments.ProductsFragment;
 import com.esprit.miracle.R;
 import com.esprit.utils.DatabaseHelper;
 import com.esprit.utils.ImageLoader;
@@ -124,7 +124,7 @@ public long getItemId(int position) {
 //	    	badge2.setTextSize(12);
 //	    	badge2.show();
 //		}
-		imageLoader.DisplayImage(Products.ipServer+p.getImagePath(), produitImg);
+		imageLoader.DisplayImage(ProductsFragment.ipServer+p.getImagePath(), produitImg);
 		produitLibelle.setText(p.getLibelle());
 		produitPrix.setText(p.getPrix()+" DT");
 		produitDesc.setText(p.getDescription());
