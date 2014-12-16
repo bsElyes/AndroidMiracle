@@ -54,7 +54,7 @@ import com.j256.ormlite.dao.RuntimeExceptionDao;
 
 @SuppressLint("ResourceAsColor")
 public class MainMenu extends Activity {
-
+	public final static int ID_USER=2000;
 
     private DrawerLayout mDrawerLayout;
     private NavigationListView mDrawerList;

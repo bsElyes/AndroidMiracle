@@ -206,6 +206,10 @@ public class SignInActivity extends Activity implements OnClickListener,
                 : getString(R.string.unknown_person);
         mSignInStatus.setText(getString(R.string.signed_in_status, currentPersonName));
         updateButtons(true /* isSignedIn */);
+        Intent i=new Intent(SignInActivity.this,MainMenu.class);
+		startActivity(i);
+		overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+		finish();
     }
 
     @Override

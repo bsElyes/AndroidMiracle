@@ -14,6 +14,6 @@
         android:layout_height="fill_parent"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/abc_list_longpressed_holo" />
+        android:src="@drawable/prod" />
     
 </RelativeLayout>

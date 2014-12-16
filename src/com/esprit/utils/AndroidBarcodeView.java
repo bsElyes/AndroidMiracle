@@ -12,7 +12,7 @@ import android.view.View;
 public class AndroidBarcodeView extends View
 {
 
-	public AndroidBarcodeView(Context context) {
+	public AndroidBarcodeView(Context context,String idClient) {
 	    super(context);
 	}
 	
