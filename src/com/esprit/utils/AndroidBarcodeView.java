@@ -11,9 +11,10 @@ import android.view.View;
 
 public class AndroidBarcodeView extends View
 {
-
+	static String code="";
 	public AndroidBarcodeView(Context context,String idClient) {
 	    super(context);
+	    code=idClient;
 	}
 	
 	@Override
@@ -1351,7 +1352,7 @@ public class AndroidBarcodeView extends View
                 Kanji characters
         */
                        //BIZCARD:N:Kelly;X:Goto;T:Design Ethnographer;C:gotomedia LLC;A:2169 Folsom Street M302;B:4158647007;F:4158647004;M:4159907005;E:kelly@gotomedia.com;;
-        barcode.setData("HELLO");
+        barcode.setData(code);
         barcode.setDataMode(QRCode.M_AUTO);
         barcode.setVersion(1);
         barcode.setEcl(QRCode.ECL_L);

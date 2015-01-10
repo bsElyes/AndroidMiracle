@@ -6,7 +6,7 @@
     android:orientation="vertical"
     
     tools:context="com.esprit.miracle.SplashScreen" 
-    android:background="#d34ecc">
+    android:background="@drawable/splash">
 
     <LinearLayout 
         android:layout_width="match_parent"
@@ -14,20 +14,14 @@
     	android:orientation="vertical"
         android:layout_centerInParent="true"
         android:layout_gravity="center">
-			    <ImageView
-			        android:layout_marginTop="100dp"
-			    android:id="@+id/myimg" 
-			    android:layout_width="200dip"
-			    android:layout_height="200dip"
-			    
-			    android:layout_gravity="center_horizontal"
-			    android:background="@drawable/ic_launcher"/>
+			   
 			    <com.gc.materialdesign.views.ProgressBarCircularIndetermininate
+				android:layout_marginTop="100dp"			        
                 android:id="@+id/progressBarCircularIndetermininate"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:background="#1E88E5" 
                 android:layout_gravity="center_horizontal"
-                android:layout_below="@id/myimg"/>
+               />
 	</LinearLayout>
 </RelativeLayout>

@@ -5,11 +5,9 @@ import java.util.List;
 
 import org.w3c.dom.Document;
 
-import uk.me.lewisdeane.lnavigationdrawer.NavigationAdapter;
 import uk.me.lewisdeane.lnavigationdrawer.NavigationItem;
 import uk.me.lewisdeane.lnavigationdrawer.NavigationListView;
 import uk.me.lewisdeane.lnavigationdrawer.NavigationListView.NavigationItemClickListener;
-
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -23,12 +21,11 @@ import android.os.StrictMode;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.esprit.entities.Produit;
@@ -159,42 +156,49 @@ public class MainMenu extends Activity {
 
 				switch (position) {
 						case 0:
-							Toast.makeText(getApplicationContext(), "Acceuil",
-									5000).show();
+							setTitle("Acceuil");
+							//fragment=new AcceuilFragment();
 							break;
 						case 1:
+							setTitle("Categorie");
 							Toast.makeText(getApplicationContext(),
 									"Categorie", 5000).show();
 							break;
 
 						case 2:
+							setTitle(R.string.title_section1);
 							fragment = new ProductsFragment(1);
 							break;
 						case 3:
+							setTitle(R.string.title_section2);
 							fragment = new ProductsFragment(2);
 							break;
 						case 4:
+							setTitle(R.string.title_section3);
 							fragment = new ProductsFragment(3);
 							break;
 						case 5:
+							setTitle(R.string.title_section4);
 							fragment = new ProductsFragment(4);
 							break;
 						case 6:
+							setTitle(R.string.title_section5);
 							fragment = new ProductsFragment(5);
 							break;
 						case 7:
+							setTitle(R.string.title_section6);
 							fragment = new ProductsFragment(6);
 							break;
 						case 8:
+							setTitle(R.string.title_section7);
 							fragment = new ProductsFragment(7);
 							break;
 						case 9:
-							fragment = new ProductsFragment(8);
+							fragment = new MyCardFragment();
 							break;
 						case 10:
-							fragment = new MyCardFragment();
-							Toast.makeText(getApplicationContext(), "MyCard",
-									5000).show();
+							fragment=new AboutFragment();
+							
 							break;
 
 						}
@@ -208,76 +212,15 @@ public class MainMenu extends Activity {
 			}
 			
 		});
-//        listItem.add(new NavigationItem("hello"));
-//        NavigationAdapter adapter = new NavigationAdapter(this,R.id.navdrawer,listItem);
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-//            android.R.layout.simple_list_item_1, android.R.id.text1, values);
-        
-        
-//       mDrawerList.setAdapter(adapter);
-//       mDrawerList.setOnItemClickListener(new OnItemClickListener() {
-
-//		@Override
-//		public void onItemClick(AdapterView<?> parent, View view, int position,
-//				long id) {
-//			Intent intent;
-//       	 FragmentManager fm= getFragmentManager();
-//          Fragment fragment =null;
-//          switch (position) {
-//              case 0:
-//                    	//fm.beginTransaction().hide(FragmentMap).commit();
-//            	  Toast.makeText(getApplicationContext(), "aegaegae gaeg aeg", 2000).show();
-//                  break;
-//              case 1:
-//              	Toast t=Toast.makeText(getApplicationContext(), "Veuillez Choisir une Categorie", 2000);
-//              	t.show();
-//                  break;
-//              case 2:
-//              	fragment = new Products(1);
-//                  break;
-//              case 3:
-//              	fragment = new Products(2);
-//                  break;
-//              case 4:
-//              	fragment = new Products(3);
-//                  break;
-//              case 5:
-//              	fragment = new Products(4);
-//                  break;
-//              case 6:
-//              	fragment = new Products(5);
-//                  break;
-//              case 7:
-//              	fragment = new Products(6);
-//                  break;
-//              case 8:
-//              	fragment = new Products(7);
-//                  break;
-//              case 9:
-//              	fragment = new Products(8);
-//                  break;
-//              case 10:
-//            	  
-//
-//              	fragment = new AboutFragment();
-//                  break;
-//			
-//		}
-//        fm.beginTransaction()
-//        .replace(R.id.containerV2, fragment)
-//        .commit();
-//        mDrawerLayout.closeDrawer(mDrawerList);
-//        
-//        mMapFragment.getView().setVisibility(View.INVISIBLE);
-//       }
-//	});
     }
-
    
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-    	// TODO Auto-generated method stub
+    public boolean onCreateOptionsMenu(Menu menu ) {
     	getMenuInflater().inflate(R.menu.magasins, menu);
+    	
+    	RelativeLayout badgeLayout = (RelativeLayout) menu.findItem(R.id.action_shop).getActionView();
+        TextView tv = (TextView) badgeLayout.findViewById(R.id.actionbar_notifcation_textview);
+        tv.setText("12");
     	return true;
     }
     @Override

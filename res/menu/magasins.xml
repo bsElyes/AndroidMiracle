@@ -4,16 +4,15 @@
 
     <item
         android:id="@+id/action_map"
-        android:orderInCategory="100"
         android:icon="@drawable/ic_action_map"        
         android:showAsAction="ifRoom"
         android:title="@string/action_map"/>
   
     <item
-        android:id="@+id/action_shop"
-        android:orderInCategory="100"
-        android:icon="@drawable/shop"        
+        android:id="@+id/action_shop"   
         android:showAsAction="ifRoom"
+        android:icon="@drawable/shop"
+        android:actionLayout="@layout/actionbar_shopping"
         android:title="@string/action_shop"/>
 
 </menu>

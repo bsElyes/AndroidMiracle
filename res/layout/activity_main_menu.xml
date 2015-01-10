@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+       >
 
 
     <RelativeLayout
@@ -30,7 +30,7 @@
     </RelativeLayout>
 
     <!-- The navigation drawer -->
-   
+
     <uk.me.lewisdeane.lnavigationdrawer.NavigationListView
         android:id="@+id/navdrawer"
         android:layout_width="@dimen/navdrawer_width"
@@ -40,7 +40,8 @@
         android:choiceMode="singleChoice"
         android:divider="@android:color/transparent"
         android:dividerHeight="0dp"
-        android:drawSelectorOnTop="false">
+        android:drawSelectorOnTop="false"
+        >
     </uk.me.lewisdeane.lnavigationdrawer.NavigationListView>
 
 </android.support.v4.widget.DrawerLayout>

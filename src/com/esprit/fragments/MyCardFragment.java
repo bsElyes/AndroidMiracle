@@ -16,7 +16,7 @@ public class MyCardFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		Intent i = getActivity().getIntent();
-		AndroidBarcodeView view = new AndroidBarcodeView(getActivity(),i.getStringExtra("idClient"));
+		AndroidBarcodeView view = new AndroidBarcodeView(getActivity(),i.getStringExtra("idClient")+"TEST MIRACLE");
 		return view;
 	}
 }

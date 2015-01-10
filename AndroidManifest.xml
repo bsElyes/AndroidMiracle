@@ -71,14 +71,11 @@
             android:name=".ProductDetails"
             android:label="@string/title_activity_product_details" >
         </activity>
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login"
-            android:windowSoftInputMode="adjustResize|stateHidden" >
-        </activity>
+      
         <activity
             android:name=".SignInActivity"
-            android:label="AEAEGAEG">
+            android:label="AEAEGAEG"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
         </activity>
         
         <meta-data 

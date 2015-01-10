@@ -41,7 +41,7 @@ public class ProductsFragment extends Fragment {
 	GridView listProduitsGrid;
 	List<Produit> produits=new ArrayList<Produit>();
 	ProduitAdapter produitAdapter;
-	public static String  ipServer="http://172.16.18.152:80";
+	public static String  ipServer="http://192.168.1.2:81";
 	String urlCat="/scripts/produits.php?id=";
 	boolean done=false;
 	public ProductsFragment(){

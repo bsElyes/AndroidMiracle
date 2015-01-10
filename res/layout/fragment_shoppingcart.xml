@@ -36,10 +36,12 @@
 
 
         <com.gc.materialdesign.views.ButtonRectangle
+
             android:id="@+id/btn_checkout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Proceed to Checkout" >
+            android:layout_marginRight="5dp"
+            android:text="Reserver" >
         </com.gc.materialdesign.views.ButtonRectangle>
     </LinearLayout>
 
