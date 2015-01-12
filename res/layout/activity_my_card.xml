@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.esprit.miracle.MyCard"
+    tools:context="com.elyes.miracle.MyCard"
 	android:background="#4a0a4a">
 
     <ImageView

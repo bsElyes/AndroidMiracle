@@ -12,7 +12,6 @@
         android:id="@+id/action_shop"   
         android:showAsAction="ifRoom"
         android:icon="@drawable/shop"
-        android:actionLayout="@layout/actionbar_shopping"
         android:title="@string/action_shop"/>
 
 </menu>

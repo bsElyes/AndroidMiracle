@@ -8,21 +8,22 @@ package uk.me.lewisdeane.lnavigationdrawer;
 
 public final class R {
 	public static final class color {
-		public static final int blue = 0x7f070001;
-		public static final int dark_grey = 0x7f070000;
+		public static final int blue = 0x7f070004;
+		public static final int dark_grey = 0x7f070003;
+		public static final int lvselect = 0x7f070005;
 	}
 	public static final class drawable {
-		public static final int ic_launcher = 0x7f02009f;
+		public static final int ic_launcher = 0x7f0200a0;
 	}
 	public static final class id {
-		public static final int item_navigation_container = 0x7f0b007d;
-		public static final int item_navigation_img = 0x7f0b007e;
-		public static final int item_navigation_title = 0x7f0b007f;
+		public static final int item_navigation_container = 0x7f0a0096;
+		public static final int item_navigation_img = 0x7f0a0097;
+		public static final int item_navigation_title = 0x7f0a0098;
 	}
 	public static final class layout {
-		public static final int item_navigation = 0x7f030029;
+		public static final int item_navigation = 0x7f03002c;
 	}
 	public static final class string {
-		public static final int app_name = 0x7f060000;
+		public static final int app_name = 0x7f0b000d;
 	}
 }

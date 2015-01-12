@@ -27,7 +27,7 @@
         
         
         <activity
-            android:name=".SplashScreen"
+            android:name="com.elyes.miracle.SplashScreen"
             android:theme="@android:style/Theme.Holo.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,27 +36,27 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.elyes.miracle.MainActivity"
             android:label="@string/title_activity_main" >
         </activity>
         <activity
-            android:name=".Videos"
+            android:name="com.elyes.miracle.Videos"
             android:label="@string/title_activity_videos" >
         </activity>
         <activity
-            android:name=".Magasins"
+            android:name="com.elyes.miracle.Magasins"
             android:label="@string/title_activity_magasins" >
         </activity>
         <activity
-            android:name=".MyCard"
+            android:name="com.elyes.miracle.MyCard"
             android:label="@string/title_activity_my_card" >
         </activity>
         <activity
-            android:name=".Catalogue"
+            android:name="com.elyes.miracle.Catalogue"
             android:label="@string/title_activity_catalogue" >
         </activity>
         <activity
-            android:name=".MainMenu"
+            android:name="com.elyes.miracle.MainMenu"
             android:label="@string/title_activity_main_menu" >
         </activity>
 
@@ -68,12 +68,12 @@
             android:value="AIzaSyAfqh2fw-nWGh4IrFUT1R_wAx9csD1LyAQ" />
 
         <activity
-            android:name=".ProductDetails"
+            android:name="com.elyes.miracle.ProductDetails"
             android:label="@string/title_activity_product_details" >
         </activity>
       
         <activity
-            android:name=".SignInActivity"
+            android:name="com.elyes.miracle.SignInActivity"
             android:label="AEAEGAEG"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
         </activity>
