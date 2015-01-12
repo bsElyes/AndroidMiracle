@@ -16,9 +16,9 @@ public final class R {
 		public static final int ic_launcher = 0x7f0200a0;
 	}
 	public static final class id {
-		public static final int item_navigation_container = 0x7f0a0096;
-		public static final int item_navigation_img = 0x7f0a0097;
-		public static final int item_navigation_title = 0x7f0a0098;
+		public static final int item_navigation_container = 0x7f0a0097;
+		public static final int item_navigation_img = 0x7f0a0098;
+		public static final int item_navigation_title = 0x7f0a0099;
 	}
 	public static final class layout {
 		public static final int item_navigation = 0x7f03002c;

@@ -23,7 +23,7 @@ import com.elyes.fragments.CartFragment;
 import com.elyes.fragments.ProductsFragment;
 import com.elyes.utils.DatabaseHelper;
 import com.elyes.utils.ImageLoader;
-import com.esprit.miracle.R;
+import com.elyes.miracle.R;
 import com.gc.materialdesign.views.ButtonFlat;
 import com.gc.materialdesign.widgets.Dialog;
 import com.j256.ormlite.android.apptools.OpenHelperManager;

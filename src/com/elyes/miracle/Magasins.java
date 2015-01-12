@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.elyes.utils.GMapV2Direction;
 import com.elyes.utils.GPSTracker;
-import com.esprit.miracle.R;
+import com.elyes.miracle.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;

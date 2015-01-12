@@ -20,7 +20,7 @@ import com.elyes.entities.Produit;
 import com.elyes.fragments.ProductsFragment;
 import com.elyes.utils.DatabaseHelper;
 import com.elyes.utils.ImageLoader;
-import com.esprit.miracle.R;
+import com.elyes.miracle.R;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.readystatesoftware.viewbadger.BadgeView;

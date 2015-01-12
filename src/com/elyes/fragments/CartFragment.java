@@ -26,7 +26,7 @@ import com.elyes.miracle.MainMenu;
 import com.elyes.utils.DatabaseHelper;
 import com.elyes.utils.JSONParser;
 import com.elyes.utils.JSONParserSend;
-import com.esprit.miracle.R;
+import com.elyes.miracle.R;
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.RuntimeExceptionDao;

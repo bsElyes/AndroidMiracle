@@ -1,7 +1,7 @@
 package com.elyes.fragments;
 
 
-import com.esprit.miracle.R;
+import com.elyes.miracle.R;
 
 import android.app.Fragment;
 import android.os.Bundle;

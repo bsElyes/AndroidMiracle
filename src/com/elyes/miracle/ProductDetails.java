@@ -4,7 +4,7 @@ package com.elyes.miracle;
 
 import com.elyes.fragments.ProductsFragment;
 import com.elyes.utils.ImageLoader;
-import com.esprit.miracle.R;
+import com.elyes.miracle.R;
 
 import android.app.Activity;
 import android.content.Intent;

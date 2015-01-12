@@ -2,7 +2,7 @@ package com.elyes.miracle;
 
 
 import com.elyes.fragments.ProductsFragment;
-import com.esprit.miracle.R;
+import com.elyes.miracle.R;
 
 import android.app.ActionBar;
 import android.app.Activity;

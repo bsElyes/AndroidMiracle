@@ -15,7 +15,7 @@
  */
 package com.elyes.miracle;
 
-import com.esprit.miracle.R;
+import com.elyes.miracle.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.SignInButton;

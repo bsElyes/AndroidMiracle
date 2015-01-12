@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.elyes.entities.Category;
-import com.esprit.miracle.R;
+import com.elyes.miracle.R;
 
 
 public class CategoryAdapter extends BaseAdapter{

@@ -27,7 +27,7 @@ import com.elyes.adapter.ProduitAdapter;
 import com.elyes.entities.Produit;
 import com.elyes.miracle.ProductDetails;
 import com.elyes.utils.HelperHttp;
-import com.esprit.miracle.R;
+import com.elyes.miracle.R;
 
 
 public class ProductsFragment extends Fragment {
